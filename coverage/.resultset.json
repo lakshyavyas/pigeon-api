@@ -1,0 +1,378 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/lib/patch/draw_route.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/group.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/application_record.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/concerns/objectable.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/guest.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/message.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/organization.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          0,
+          0,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/role.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/simple_auth.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/user_group.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/user_role.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/models/user.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/controllers/root_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/controllers/application_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/mailers/application_mailer.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/jobs/application_job.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/channels/application_cable/connection.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/niteshpurohit/Repositories/CodeVedas/pigeon/pigeon-api/app/channels/application_cable/channel.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1631991223
+  }
+}

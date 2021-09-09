@@ -1,0 +1,11 @@
+config: &config
+  allowed_images:
+    - image/jpg
+    - image/jpeg
+    - image/png
+test:
+  <<: *config
+development:
+  <<: *config
+production:
+  <<: *config

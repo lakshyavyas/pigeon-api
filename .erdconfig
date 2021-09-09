@@ -1,0 +1,21 @@
+attributes:
+  - content
+  - foreign_key
+disconnected: true
+filename: design/erd
+filetype: pdf
+indirect: true
+inheritance: false
+markup: true
+notation: bachman
+orientation: vertical
+polymorphism: true
+sort: true
+warn: true
+title: Pigeon DB
+exclude: "Record,ApplicationRecord,ActiveStorage::Record"
+only: null
+only_recursion_depth: null
+prepend_primary: false
+cluster: false
+splines: spline

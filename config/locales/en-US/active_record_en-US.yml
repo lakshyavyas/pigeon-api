@@ -1,0 +1,60 @@
+en-US:
+  activerecord:
+    models:
+      application_record: Application record
+      role: Role
+      organization: Organization
+      user: User
+      user_role: User role
+      active_storage/record: Active storage/record
+      active_storage/blob: Active storage/blob
+      active_storage/variant_record: Active storage/variant record
+      active_storage/attachment: Active storage/attachment
+    attributes:
+      role:
+        id: Id
+        title: Title
+        description: Description
+        scope: Scope
+        created_at: Created at
+        updated_at: Updated at
+      organization:
+        id: Id
+        name: Name
+        created_at: Created at
+        updated_at: Updated at
+      user:
+        id: Id
+        first_name: First name
+        last_name: Last name
+        email: Email
+        password_digest: Password digest
+        created_at: Created at
+        updated_at: Updated at
+      user_role:
+        id: Id
+        user_id: User id
+        role_id: Role id
+        created_at: Created at
+        updated_at: Updated at
+      active_storage/blob:
+        id: Id
+        key: Key
+        filename: Filename
+        content_type: Content type
+        metadata: Metadata
+        service_name: Service name
+        byte_size: Byte size
+        checksum: Checksum
+        created_at: Created at
+      active_storage/variant_record:
+        id: Id
+        blob_id: Blob id
+        variation_digest: Variation digest
+      active_storage/attachment:
+        id: Id
+        name: Name
+        record_type: Record type
+        record_id: Record id
+        blob_id: Blob id
+        created_at: Created at
