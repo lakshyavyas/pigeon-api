@@ -1,4 +1,7 @@
 config: &config
+  access:
+    duration:
+      api: 3600 # 3600 seconds in 1 hour
   allowed_images:
     - image/jpg
     - image/jpeg

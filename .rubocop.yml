@@ -8,4 +8,12 @@ AllCops:
     - 'bin/*'
     - 'db/**/*'
     - 'vendor/**/*'
+Metrics/AbcSize:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
 
