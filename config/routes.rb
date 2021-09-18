@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root 'root#index'
   namespace :api do
     namespace :v1 do
-      # File in config/routes/v1/api_simple_auth.rb
-      draw 'api_simple_auth', 'v1'
+      draw 'api_auth', 'v1' # config/routes/v1/api_auth.rb
+      draw 'api_iam', 'v1' # config/routes/v1/api_iam.rb
     end
   end
 end

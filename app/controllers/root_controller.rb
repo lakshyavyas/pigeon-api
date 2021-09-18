@@ -3,6 +3,6 @@
 # Root Controller for '/'
 class RootController < ApplicationController
   def index
-    render json: {}
+    render json: {}, status: :ok
   end
 end

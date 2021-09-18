@@ -33,7 +33,7 @@ when 'rspec --tag feature', 'rspec'
   cmd = "#{command} #{ARGV.join(' ')}"
   puts "Running: #{cmd}".blue
   system(cmd)
-  system("make -s tfg")
+  system("make -s features") if ENV['GEN_FEATURES'] == 'true'
 when 'annotate', 'erd', 'rubocop', 'rubocop -A'
   cmd = "#{command} #{ARGV.join(' ')}"
   puts "Running: #{cmd}".blue

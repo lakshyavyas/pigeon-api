@@ -83,8 +83,8 @@
 - able to delete uploaded files from conversation  🛠
 
 ## User - Simple Auths
-- able to login  🛠
-- able to logout  🛠
+- able to login  ✅
+- able to logout  ✅
 
 ## User - Team
 - able to create a team  🛠
