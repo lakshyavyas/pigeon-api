@@ -30,7 +30,6 @@ module Api
 
         def gen_access
           @access = user.accesses.create(token_type: :api)
-          puts access.errors.full_messages
           render_server_error standard_error('app.error.server_error'), Utils::ErrorSerializer unless access
         end
 

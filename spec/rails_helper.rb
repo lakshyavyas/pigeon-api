@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
 require 'simplecov'
+SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
+
+require 'spec_helper'
 require 'shoulda-matchers'
 require 'active_storage_validations/matchers'
 require_relative './support/factory_bot'
 require_relative './support/shared_functions'
-
-SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)

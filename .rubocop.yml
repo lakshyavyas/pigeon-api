@@ -24,5 +24,9 @@ RSpec/MultipleExpectations:
   Enabled: true
   Exclude:
     - 'spec/**/*'
+RSpec/AnyInstance:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
 
 

@@ -15,7 +15,7 @@ module Api
         render_unauthorized e, Utils::ErrorSerializer
       end
 
-      private
+      protected
 
       def check_access_token
         raise standard_error('app.error.unauthorized') unless access && user
