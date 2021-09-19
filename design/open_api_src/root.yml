@@ -1,0 +1,26 @@
+openapi: 3.0.0
+servers:
+  - description: Localhost
+    url: http://localhost:3000/api/v1
+info:
+  description: Pegion API
+  version: "1.0.0"
+  title: Pegion API
+  contact:
+    email: hello@codevedas.com
+  license:
+    name: MIT
+    url: 'https://github.com/Code-Vedas/pigeon-api/blob/main/LICENSE.txt'
+tags:
+  - name: simple_auth
+    description: Simple Auth API
+  - name: iam
+    description: IAM API's
+  - name: iam_me
+    description: IAM Me API's
+  - name: iam_avatar
+    description: IAM Avatar API's
+  - name: auths
+    description: Auth API's
+  - name: authenticated
+    description: Authenticated API's

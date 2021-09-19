@@ -18,7 +18,9 @@ aliases = {
   'test' => 'rspec',
   'tf' => 'rspec --tag feature',
   'test:request' => 'rspec --tag feature',
+  'openapi' => 'openapi',
   'annotate' => 'annotate',
+  'features' => 'features',
   'erd' => 'erd',
   'lint' => 'rubocop',
   'lint:fix' => 'rubocop -A',
@@ -29,6 +31,12 @@ command = ARGV.shift
 command = aliases[command] || command
 
 case command
+when 'features'
+  puts "Generating features.md in design folder".blue
+  system("bin/generate_feature_report")
+when 'openapi'
+  puts "Generating open_api.yml in design folder".blue
+  system("bin/generate_openapi_spec")
 when 'rspec --tag feature', 'rspec'
   cmd = "#{command} #{ARGV.join(' ')}"
   puts "Running: #{cmd}".blue

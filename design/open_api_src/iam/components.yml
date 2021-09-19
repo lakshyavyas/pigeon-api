@@ -1,0 +1,51 @@
+---
+securitySchemes:
+  authenticatedRequest:
+    type: apiKey
+    in: header
+    name: ACCESS_TOKEN
+schemas:
+  UserAvatarUpdateBody:
+    type: object
+    properties:
+      avatar:
+        type: string
+        format: binary
+
+  UserUpdateBody:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+  UserObject:
+    type: object
+    required:
+      - first_name
+      - last_name
+      - full_name
+      - avatar
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      full_name:
+        type: string
+      avatar:
+        type: object
+        required:
+          - original
+          - small
+          - medium
+          - type
+        properties:
+          original:
+            type: string
+          small:
+            type: string
+          medium:
+              type: string
+          type:
+              type: string

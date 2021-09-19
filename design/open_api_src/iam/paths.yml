@@ -1,0 +1,92 @@
+paths:
+  /iam/me:
+    get:
+      tags:
+        - authenticated
+        - iam
+        - iam_me
+      summary: Get log'd in user's profile
+      operationId: iamMe
+      description: Get log'd in user's profile
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Successfully fetched profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserObject'
+        '403':
+          description: Unauthenticated access
+    put:
+      tags:
+        - authenticated
+        - iam
+        - iam_me
+      summary: Update Log'd in user profile
+      operationId: iamMeUpdate
+      description: Update Log'd in user profile
+      security:
+        - authenticatedRequest: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateBody'
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserObject'
+        '403':
+          description: Unauthenticated access
+  /iam/avatar:
+    post:
+      tags:
+        - authenticated
+        - iam
+        - iam_avatar
+      summary: Update User Avatar Image
+      operationId: iamMeUpdateAvatarImage
+      description: Update User Avatar Image
+      security:
+        - authenticatedRequest: [ ]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserAvatarUpdateBody'
+      responses:
+        '200':
+          description: Avatar updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserObject'
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+        - authenticated
+        - iam
+        - iam_avatar
+      summary: Remove User Avatar Image
+      operationId: iamMeRemoveAvatarImage
+      description: Remove User Avatar Image
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Avatar removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserObject'
+        '403':
+          description: Unauthenticated access
+

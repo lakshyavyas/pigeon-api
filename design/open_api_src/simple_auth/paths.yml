@@ -1,0 +1,43 @@
+paths:
+  /auth/simple_auth:
+    post:
+      tags:
+        - auths
+        - simple_auth
+      summary: Login using Simple Auth
+      operationId: simpleAuthLogin
+      description: Login using Simple Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimpleAuthLoginBody'
+
+      responses:
+        '200':
+          description: Successfull Login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessObject'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorObject'
+    delete:
+      tags:
+        - authenticated
+        - simple_auth
+      summary: Logout Simple Auth
+      operationId: simpleAuthLogout
+      description: Logout Simple Auth
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Logout Successfull
+        '403':
+          description: Unauthenticated access

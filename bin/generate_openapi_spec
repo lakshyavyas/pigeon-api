@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+APP_PATH = File.expand_path('../config/application', __dir__)
+require_relative '../config/boot'
+require 'rails/command'
+require 'colorize'
+require 'yaml'
+require 'active_support/all'
+
+specs_path = "design/open_api_src"
+output_file = "design/open_api.yml"
+
+root_yml = YAML.load(File.open("#{specs_path}/root.yml"))
+root_yml['components'] = { 'schemas' => {}, 'securitySchemes' => {} }
+root_yml['paths'] = {}
+Dir.glob("#{specs_path}/**/components.yml") do |file|
+  hash_to_merge = YAML.load(File.open(file))
+  root_yml['components']['schemas'].reverse_merge!(hash_to_merge['schemas'])
+  root_yml['components']['securitySchemes'].reverse_merge!(hash_to_merge['securitySchemes']) if hash_to_merge['securitySchemes']
+end
+
+Dir.glob("#{specs_path}/**/paths.yml") do |file|
+  hash_to_merge = YAML.load(File.open(file))
+  root_yml['paths'].reverse_merge!(hash_to_merge['paths'])
+end
+
+File.write(output_file, root_yml.to_yaml)

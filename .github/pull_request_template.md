@@ -24,6 +24,6 @@ Please delete options that are not relevant.
 
 # Documentation Checklist:
 
-- [ ] run `bin/generate_features_report` at root of the project
+- [ ] run `rails features` at root of the project (only if you add new features specs)
 - [ ] run `rails erd` at root of the project (only if database schema is updated)
-- [ ] Update OpenAPI Spec (only if new API Endpoints added)
+- [ ] run `rails openapi` to update OpenAPI Spec (only if new API Endpoints added)
