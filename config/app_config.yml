@@ -1,4 +1,6 @@
 config: &config
+  cdn:
+    url: 'https://example.com'
   access:
     duration:
       api: 3600 # 3600 seconds in 1 hour

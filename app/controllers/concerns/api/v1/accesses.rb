@@ -10,10 +10,18 @@ module Api
         access_token = request.headers['HTTP_ACCESS_TOKEN']
         @access = Access.find_by(access_token: access_token)
         @user = access&.user
-        render_unauthorized standard_error('app.error.unauthorized'), Utils::ErrorSerializer unless access && user
+        check_access_token
+      rescue StandardError => e
+        render_unauthorized e, Utils::ErrorSerializer
       end
 
       private
+
+      def check_access_token
+        raise standard_error('app.error.unauthorized') unless access && user
+        raise standard_error('app.error.access_token_expired') if access.expired?
+        raise standard_error('app.error.access_token_inactive') if access.inactive?
+      end
 
       def render_obj(obj, serializer_klass, status)
         render json: serializer_klass.new(obj), status: status

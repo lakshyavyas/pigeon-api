@@ -16,4 +16,13 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - 'spec/**/*'
+RSpec/ExampleLength:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+RSpec/MultipleExpectations:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
 

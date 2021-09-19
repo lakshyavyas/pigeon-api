@@ -27,9 +27,14 @@ class User < ApplicationRecord
   has_many :groups, through: :user_groups
   has_many :inbound_messages, as: :recipient, class_name: 'Message'
   has_many :outbound_messages, as: :sender, class_name: 'Message'
-  has_one_attached :avatar do |attachable|
-    attachable.variant :small, resize: '50x50'
-    attachable.variant :medium, resize: '150x150'
+  has_one_attached :avatar
+  validates :avatar, presence: false, size: { less_than: 512.kilobytes }, content_type: app_config.allowed_images
+
+  def avatar_urls
+    if avatar&.attached?
+      cdn_blob_urls(avatar)
+    else
+      default_avatar_url(first_name)
+    end
   end
-  validates :avatar, presence: false, size: { less_than: 5.megabytes }, content_type: app_config.allowed_images
 end
