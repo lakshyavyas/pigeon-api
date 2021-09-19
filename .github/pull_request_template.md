@@ -23,6 +23,7 @@ Please delete options that are not relevant.
 - [ ] Any dependent changes have been merged and published in downstream modules
 
 # Documentation Checklist:
-- [ ] run `make features` at root of the project
+
+- [ ] run `bin/generate_features_report` at root of the project
 - [ ] run `rails erd` at root of the project (only if database schema is updated)
 - [ ] Update OpenAPI Spec (only if new API Endpoints added)

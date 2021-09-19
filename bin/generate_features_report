@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+system("NO_COVERAGE=true bin/rspec --tag feature --format json --out design/features.json || true")
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative '../config/boot'
 require 'rails/command'
@@ -8,11 +9,11 @@ require 'colorize'
 require 'json'
 require 'erb'
 
-json_report = JSON.parse(File.read('design/features.json'))
+design_file_path = 'design/features.json'
+json_report = JSON.parse(File.read(design_file_path))
 json_report = json_report['examples'].map { |obj| { status: obj['status'], description: obj['description'], class: obj['full_description'].gsub(obj['description'], '').strip } }
 json_report = json_report.group_by { |item| item[:class] }
 @headings = json_report.keys.sort
-
 
 md_file = ERB.new("# Pigeon API Features
 
@@ -22,3 +23,4 @@ md_file = ERB.new("# Pigeon API Features
 \n
 <% end end %>".gsub(/^\s+/, ""), trim_mode: nil).result
 File.write('design/api_features.md', md_file)
+File.delete(design_file_path) if File.exists?(design_file_path)
