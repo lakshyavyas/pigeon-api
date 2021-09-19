@@ -11,9 +11,6 @@
 #
 class Organization < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
-  has_one_attached :logo do |attachable|
-    attachable.variant :small, resize: '50x50'
-    attachable.variant :medium, resize: '150x150'
-  end
-  validates :logo, presence: false, size: { less_than: 5.megabytes }, content_type: app_config.allowed_images
+  has_one_attached :logo
+  validates :logo, presence: false, size: { less_than: 512.kilobytes }, content_type: app_config.allowed_images
 end

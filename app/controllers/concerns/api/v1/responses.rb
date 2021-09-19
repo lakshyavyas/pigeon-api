@@ -26,6 +26,10 @@ module Api
         render_obj obj, serializer_klass, :internal_server_error
       end
 
+      def render_unprocessable_entity(obj, serializer_klass)
+        render_obj obj, serializer_klass, :unprocessable_entity
+      end
+
       private
 
       def render_obj(obj, serializer_klass, status)

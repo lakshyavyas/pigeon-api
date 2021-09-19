@@ -8,6 +8,14 @@ module Tokenable
     before_validation :gen_access_token, :gen_renew_token, :gen_expires_at
   end
 
+  def expired?
+    Time.now > expires_at
+  end
+
+  def inactive?
+    !active
+  end
+
   protected
 
   def gen_access_token

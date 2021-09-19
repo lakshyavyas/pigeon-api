@@ -10,6 +10,7 @@ module Api
         attribute :full_name do |obj|
           "#{obj.first_name} #{obj.last_name}"
         end
+        attribute :avatar, &:avatar_urls
       end
     end
   end

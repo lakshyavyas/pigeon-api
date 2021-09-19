@@ -31,5 +31,5 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:accesses) }
   it { is_expected.to validate_content_type_of(:avatar).allowing('image/png', 'image/jpg', 'image/jpeg') }
   it { is_expected.to validate_content_type_of(:avatar).rejecting('text/plain', 'text/xml') }
-  it { is_expected.to validate_size_of(:avatar).less_than(5.megabytes) }
+  it { is_expected.to validate_size_of(:avatar).less_than(512.kilobytes) }
 end

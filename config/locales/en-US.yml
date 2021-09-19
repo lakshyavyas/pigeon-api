@@ -25,3 +25,5 @@ en:
       bad_request: "Bad Request"
       unauthorized: "Unauthorized"
       server_error: "Server Error"
+      access_token_expired: "Access Token Expired"
+      access_token_inactive: "Invalid Access Token"
