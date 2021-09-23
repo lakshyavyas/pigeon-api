@@ -13,10 +13,19 @@
 #
 
 FactoryBot.define do
+  factory :simple_auth_admins, class: 'User' do
+    email { Faker::Internet.email }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    simple_auth { SimpleAuth.create(password: '123123') }
+    user_role { UserRole.create(role: FactoryBot.create(:admin_role)) }
+  end
+
   factory :simple_auth_users, class: 'User' do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     simple_auth { SimpleAuth.create(password: '123123') }
+    user_role { UserRole.create(role: FactoryBot.create(:user_role)) }
   end
 end

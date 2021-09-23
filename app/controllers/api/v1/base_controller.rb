@@ -9,7 +9,7 @@ module Api
       include Accesses
       include Errors
 
-      attr_accessor :user, :access
+      attr_accessor :user, :access, :organization
     end
   end
 end

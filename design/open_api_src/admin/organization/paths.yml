@@ -1,0 +1,87 @@
+paths:
+  /admin/organization:
+    get:
+      tags:
+        - authenticated
+        - organization
+      summary: Get organization details
+      operationId: getOrganization
+      description: Get organization details
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Successfully fetched organization profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationObject'
+        '403':
+          description: Unauthenticated access
+    put:
+      tags:
+        - authenticated
+        - organization
+      summary: Update organization profile
+      operationId: updateOrganization
+      description: Update organization profile
+      security:
+        - authenticatedRequest: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrgProfileUpdateBody'
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationObject'
+        '403':
+          description: Unauthenticated access
+  /admin/organization/logo:
+    post:
+      tags:
+        - authenticated
+        - organization
+      summary: Update organization logo
+      operationId: updateOrganizationLogo
+      description:  Update organization logo
+      security:
+        - authenticatedRequest: [ ]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrgLogoUpdateBody'
+      responses:
+        '200':
+          description: Logo updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationObject'
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+        - authenticated
+        - organization
+      summary: Remove organization logo
+      operationId: removeOrganizationLogo
+      description: Remove organization logo
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Logo removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationObject'
+        '403':
+          description: Unauthenticated access
