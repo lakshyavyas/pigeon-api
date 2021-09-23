@@ -23,4 +23,17 @@
 class UserRole < ApplicationRecord
   belongs_to :user
   belongs_to :role
+
+  def allowed?(param_role)
+    normal_user_check?(param_role) || admin_user_check?(param_role)
+  end
+
+  def admin_user_check?(param_role)
+    (role.scope.starts_with?(roles_config[:default_admin]) && param_role.starts_with?(roles_config[:default_admin])) ||
+      (role.scope.starts_with?(roles_config[:default_admin]) && param_role.starts_with?(roles_config[:default_user]))
+  end
+
+  def normal_user_check?(param_role)
+    role.scope.starts_with?(roles_config[:default_user]) && param_role.starts_with?(roles_config[:default_user])
+  end
 end

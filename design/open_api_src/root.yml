@@ -20,7 +20,11 @@ tags:
     description: IAM Me API's
   - name: iam_avatar
     description: IAM Avatar API's
+  - name: iam_organization
+    description: IAM Organization API's
   - name: auths
     description: Auth API's
   - name: authenticated
     description: Authenticated API's
+  - name: organization
+    description: Organization

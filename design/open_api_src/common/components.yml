@@ -1,3 +1,9 @@
+---
+securitySchemes:
+  authenticatedRequest:
+    type: apiKey
+    in: header
+    name: ACCESS_TOKEN
 schemas:
   ErrorObject:
     type: object

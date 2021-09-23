@@ -33,19 +33,19 @@ command = aliases[command] || command
 case command
 when 'features'
   puts "Generating features.md in design folder".blue
-  system("bin/generate_feature_report")
+  system("./bin/generate_features_report", exception: true)
 when 'openapi'
   puts "Generating open_api.yml in design folder".blue
-  system("bin/generate_openapi_spec")
+  system("bin/generate_openapi_spec", exception: true)
 when 'rspec --tag feature', 'rspec'
   cmd = "#{command} #{ARGV.join(' ')}"
   puts "Running: #{cmd}".blue
-  system(cmd)
-  system("bin/generate_feature_report") if ENV['GEN_FEATURES'] == 'true'
+  system(cmd, exception: true)
+  system("bin/generate_feature_report", exception: true) if ENV['GEN_FEATURES'] == 'true'
 when 'annotate', 'erd', 'rubocop', 'rubocop -A'
   cmd = "#{command} #{ARGV.join(' ')}"
   puts "Running: #{cmd}".blue
-  system(cmd)
+  system(cmd, exception: true)
 else
   Rails::Command.invoke command, ARGV
 end

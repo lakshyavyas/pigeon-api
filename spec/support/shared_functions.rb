@@ -4,6 +4,14 @@
 module SharedFunctions
   attr_accessor :user, :access, :api_user
 
+  def given_admin_user
+    @user = FactoryBot.create(:simple_auth_admins)
+    expect(user.first_name).not_to eq(nil)
+    expect(user.last_name).not_to eq(nil)
+    expect(user.email).not_to eq(nil)
+    expect(user.simple_auth).not_to eq(nil)
+  end
+
   def given_the_user
     @user = FactoryBot.create(:simple_auth_users)
     expect(user.first_name).not_to eq(nil)

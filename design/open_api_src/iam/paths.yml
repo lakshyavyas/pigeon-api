@@ -89,4 +89,24 @@ paths:
                 $ref: '#/components/schemas/UserObject'
         '403':
           description: Unauthenticated access
+  /iam/organization:
+    get:
+      tags:
+        - authenticated
+        - iam
+        - iam_organization
+      summary: Get organization details
+      operationId: userGetOrganization
+      description: Get organization details
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Successfully fetched organization profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationObject'
+        '403':
+          description: Unauthenticated access
 

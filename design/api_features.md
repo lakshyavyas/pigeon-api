@@ -34,9 +34,10 @@
 - able to delete user  🛠
 
 ## Admin - Organization Profile
-- able to update organization profile  🛠
-- able to create organization logo  🛠
-- able to delete organization logo  🛠
+- able to fetch organization profile  ✅
+- able to update organization profile  ✅
+- able to create organization logo  ✅
+- able to delete organization logo  ✅
 
 ## Guest -Conversation
 - able to list all conversations  🛠
@@ -81,6 +82,9 @@
 - able to edit message in conversation  🛠
 - able to upload approved files to conversation  🛠
 - able to delete uploaded files from conversation  🛠
+
+## User - Organization Profile
+- able to fetch organization profile  ✅
 
 ## User - Simple Auths
 - able to login  ✅

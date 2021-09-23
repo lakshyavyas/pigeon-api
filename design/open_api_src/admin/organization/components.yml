@@ -1,0 +1,14 @@
+schemas:
+  OrgProfileUpdateBody:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+  OrgLogoUpdateBody:
+    type: object
+    properties:
+      logo:
+        type: string
+        format: binary
