@@ -19,7 +19,7 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
   end
 
   it 'admin able to create organization logo' do
-    given_the_logged_in_user
+    given_the_logged_in_admin
     able_to_upload_logo
     validation_error_image_size
     validation_error_image_type
@@ -49,6 +49,7 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
     post '/api/v1/settings/organization/logo',
          params: { logo: file },
          headers: { HTTP_ACCESS_TOKEN: access[:access_token] }
+    expect(response.status).to eq(200)
     user_able_fetch_org_profile
     org_have_attached_image(uploaded)
   end
