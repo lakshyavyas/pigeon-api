@@ -27,3 +27,4 @@ en:
       server_error: "Server Error"
       access_token_expired: "Access Token Expired"
       access_token_inactive: "Invalid Access Token"
+      not_implemented: "Not implemented"

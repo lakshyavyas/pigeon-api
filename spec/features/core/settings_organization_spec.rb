@@ -6,32 +6,27 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
   attr_accessor :organization
 
   it 'able to fetch organization profile' do
-    given_the_user
-    user_able_to_login
+    given_the_logged_in_user
     user_able_fetch_org_profile
   end
 
   it 'admin able to update organization profile' do
-    given_the_user
-    user_able_to_login
+    given_the_logged_in_user
     user_able_to_update_org(:name, 15, 401)
-    given_admin_user
-    user_able_to_login
+    given_the_logged_in_admin
     user_able_to_update_org(:name, 14, 200)
     user_able_to_update_org(:name, 50, 422)
   end
 
   it 'admin able to create organization logo' do
-    given_admin_user
-    user_able_to_login
+    given_the_logged_in_user
     able_to_upload_logo
     validation_error_image_size
     validation_error_image_type
   end
 
   it 'admin able to delete organization logo' do
-    given_admin_user
-    user_able_to_login
+    given_the_logged_in_admin
     able_to_delete_logo
   end
 
@@ -45,7 +40,7 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
   def able_to_delete_logo
     delete '/api/v1/settings/organization/logo', headers: { HTTP_ACCESS_TOKEN: access[:access_token] }
     expect(response.status).to eq(200)
-    admin_able_fetch_org_profile
+    user_able_fetch_org_profile
     org_have_attached_image(default)
   end
 
@@ -54,7 +49,7 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
     post '/api/v1/settings/organization/logo',
          params: { logo: file },
          headers: { HTTP_ACCESS_TOKEN: access[:access_token] }
-    admin_able_fetch_org_profile
+    user_able_fetch_org_profile
     org_have_attached_image(uploaded)
   end
 
@@ -81,12 +76,6 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
     expect(organization[:logo][:type]).to eq(type) unless type == 'any'
   end
 
-  def admin_able_fetch_org_profile
-    get '/api/v1/settings/organization', headers: { HTTP_ACCESS_TOKEN: access[:access_token] }
-    expect(response.status).to eq(200)
-    @organization = JSON.parse(response.body, symbolize_names: true)
-  end
-
   def user_able_to_update_org(field, length, expected_result)
     value = Faker::Lorem.characters(number: length)
     put '/api/v1/settings/organization',
@@ -95,7 +84,7 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
     expect(response.status).to eq(expected_result)
     return if expected_result != 200
 
-    admin_able_fetch_org_profile
+    user_able_fetch_org_profile
     expect(organization[field.to_sym]).to eq(value)
   end
 end

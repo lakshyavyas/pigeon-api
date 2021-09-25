@@ -2,14 +2,25 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: accesses
 #
-#  id         :bigint           not null, primary key
-#  email      :string
-#  first_name :string
-#  last_name  :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :bigint           not null, primary key
+#  access_token :string
+#  active       :boolean          default(TRUE)
+#  expires_at   :datetime
+#  renew_token  :string
+#  token_type   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint           not null
+#
+# Indexes
+#
+#  index_accesses_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 FactoryBot.define do

@@ -11,10 +11,9 @@ RSpec.describe 'Core - Simple Auths', type: :request, feature: true do
   end
 
   it 'able to logout' do
-    given_the_user
-    user_able_to_login
+    given_the_logged_in_user
     user_able_to_logout
-    user_able_to_login
+    given_the_logged_in_user
     error_if_some_error
   end
 

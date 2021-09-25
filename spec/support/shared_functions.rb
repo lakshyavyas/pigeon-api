@@ -20,6 +20,16 @@ module SharedFunctions
     expect(user.simple_auth).not_to eq(nil)
   end
 
+  def given_the_logged_in_admin
+    given_admin_user
+    @access = user.accesses.create(token_type: :api)
+  end
+
+  def given_the_logged_in_user
+    given_the_user
+    @access = user.accesses.create(token_type: :api)
+  end
+
   def user_able_to_login
     post '/api/v1/auth/simple_auth', params: { username: user.email, password: user.simple_auth.password }
     expect(response.status).to eq(201)
