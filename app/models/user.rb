@@ -20,8 +20,8 @@ class User < ApplicationRecord
             uniqueness: true,
             format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  has_one :user_role, dependent: :destroy
   has_one :simple_auth, dependent: :destroy
+  has_many :user_roles, dependent: :destroy
   has_many :user_groups
   has_many :accesses
   has_many :groups, through: :user_groups

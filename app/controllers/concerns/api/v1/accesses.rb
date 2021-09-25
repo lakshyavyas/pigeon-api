@@ -26,7 +26,7 @@ module Api
       end
 
       def role_allowed?(role)
-        user&.user_role&.allowed?(role)
+        UserRoles::ValidateProcess.new({ role: role, user: user }).perform
       end
 
       def render_obj(obj, serializer_klass, status)

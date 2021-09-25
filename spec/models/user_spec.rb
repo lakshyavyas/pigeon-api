@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_length_of(:first_name).is_at_least(2).is_at_most(20) }
   it { is_expected.to validate_length_of(:last_name).is_at_least(2).is_at_most(20) }
   it { is_expected.to validate_length_of(:email).is_at_least(2).is_at_most(100) }
-  it { is_expected.to have_one(:user_role) }
+  it { is_expected.to have_many(:user_roles) }
   it { is_expected.to have_one(:simple_auth) }
   it { is_expected.to have_many(:user_groups) }
   it { is_expected.to have_many(:groups) }

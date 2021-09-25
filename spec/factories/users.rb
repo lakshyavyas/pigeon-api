@@ -18,7 +18,10 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     simple_auth { SimpleAuth.create(password: '123123') }
-    user_role { UserRole.create(role: FactoryBot.create(:admin_role)) }
+    user_roles do
+      [UserRole.create(role_arn: roles_config[:default_user]),
+       UserRole.create(role_arn: roles_config[:default_admin])]
+    end
   end
 
   factory :simple_auth_users, class: 'User' do
@@ -26,6 +29,6 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     simple_auth { SimpleAuth.create(password: '123123') }
-    user_role { UserRole.create(role: FactoryBot.create(:user_role)) }
+    user_roles { [UserRole.create(role_arn: roles_config[:default_user])] }
   end
 end
