@@ -1,118 +1,55 @@
 # Pigeon API Features
 
-## Admin - Manage Channel
-- able to list all channels  🛠
-- able to create new channel  🛠
-- able to update channel  🛠
-- able to delete a channel  🛠
-- able to add user to channel  🛠
-- able to remove user from channel  🛠
-
-## Admin - Manage Conversations
-- able to list all conversations  🛠
-- able to create new conversation  🛠
-- able to update conversation  🛠
-- able to delete a conversation  🛠
-- able to add user to conversation  🛠
-- able to remove user from conversation  🛠
-
-## Admin - Manage Teams
-- able to list all teams  🛠
-- able to create new team  🛠
-- able to update team  🛠
-- able to delete a team  🛠
-- able to add user to team  🛠
-- able to remove user from team  🛠
-
-## Admin - Manage Users
-- able to list all users  🛠
-- able to create new user  🛠
-- able to update user  🛠
-- able to suspend user  🛠
-- able to unsuspend a suspended user  🛠
-- able to change user's password  🛠
-- able to delete user  🛠
-
-## Admin - Organization Profile
-- able to fetch organization profile  ✅
-- able to update organization profile  ✅
-- able to create organization logo  ✅
-- able to delete organization logo  ✅
-
-## Guest -Conversation
-- able to list all conversations  🛠
-- able to view one conversation  🛠
-
-## Guest -Conversation Message
-- able to list all message in a conversation  🛠
-- able to get one message in a conversation  🛠
-- able to post message to conversation  🛠
-- able to delete message from conversation  🛠
-- able to edit message in conversation  🛠
-- able to upload approved files to conversation  🛠
-- able to delete uploaded files from conversation  🛠
-
-## User - Channel
-- able to list all channel  🛠
-- able to view one channel  🛠
-- able to leave a channel  🛠
-- able to join a public channel  🛠
-- able to join a private channel only when invited  🛠
-
-## User - Channel Message
-- able to list all message in a channel  🛠
-- able to get one message in a channel  🛠
-- able to post message to channel  🛠
-- able to delete message from channel  🛠
-- able to edit message in channel  🛠
-- able to upload approved files to channel  🛠
-- able to delete uploaded files from channel  🛠
-
-## User - Conversation
-- able to list all conversations  🛠
-- able to view one conversation  🛠
-- able to resolve a conversation with resolution message  🛠
-- able to add another user to conversation, aka assign to another user  🛠
-
-## User - Conversation Message
-- able to list all message in a conversation  🛠
-- able to get one message in a conversation  🛠
-- able to post message to conversation  🛠
-- able to delete message from conversation  🛠
-- able to edit message in conversation  🛠
-- able to upload approved files to conversation  🛠
-- able to delete uploaded files from conversation  🛠
-
-## User - Organization Profile
-- able to fetch organization profile  ✅
-
-## User - Simple Auths
-- able to login  ✅
-- able to logout  ✅
-
-## User - Team
-- able to create a team  🛠
-- able to delete owned team  🛠
-- able to add members to a team when admin of team  🛠
-- able to remove members from a team when admin of team  🛠
-- able to add members to a team when owner of team  🛠
-- able to remove members from a team when owner of team  🛠
-- able to list all team  🛠
-- able to view one team  🛠
-- able to leave a team  🛠
-- able to view members in a team  🛠
-
-## User - Team Message
-- able to list all message in a team  🛠
-- able to get one message in a team  🛠
-- able to post message to team  🛠
-- able to delete message from team  🛠
-- able to edit message in team  🛠
-- able to upload approved files to team  🛠
-- able to delete uploaded files from team  🛠
-
-## User - User Profile
-- able to fetch profile  ✅
-- able to update profile  ✅
-- able to add profile image  ✅
-- able to remove profile image  ✅
+## Core Features
+| Section | Feature | Status |
+| :---: | :---: | :---: |
+| Channel | able to list all channel | 🛠 |
+| Channel | able to view one channel | 🛠 |
+| Channel | able to leave a channel | 🛠 |
+| Channel | able to join a public channel | 🛠 |
+| Channel | able to join a private channel only when invited | 🛠 |
+| Channel Message | able to list all message in a channel | 🛠 |
+| Channel Message | able to get one message in a channel | 🛠 |
+| Channel Message | able to post message to channel | 🛠 |
+| Channel Message | able to delete message from channel | 🛠 |
+| Channel Message | able to edit message in channel | 🛠 |
+| Channel Message | able to upload approved files to channel | 🛠 |
+| Channel Message | able to delete uploaded files from channel | 🛠 |
+| Conversation | able to list all conversations | 🛠 |
+| Conversation | able to view one conversation | 🛠 |
+| Conversation | able to resolve a conversation with resolution message | 🛠 |
+| Conversation | able to add another user to conversation, aka assign to another user | 🛠 |
+| Conversation Message | able to list all message in a conversation | 🛠 |
+| Conversation Message | able to get one message in a conversation | 🛠 |
+| Conversation Message | able to post message to conversation | 🛠 |
+| Conversation Message | able to delete message from conversation | 🛠 |
+| Conversation Message | able to edit message in conversation | 🛠 |
+| Conversation Message | able to upload approved files to conversation | 🛠 |
+| Conversation Message | able to delete uploaded files from conversation | 🛠 |
+| Organization Settings | able to fetch organization profile | ✅ |
+| Organization Settings | admin able to update organization profile | ✅ |
+| Organization Settings | admin able to create organization logo | ✅ |
+| Organization Settings | admin able to delete organization logo | ✅ |
+| Simple Auths | able to login | ✅ |
+| Simple Auths | able to logout | ✅ |
+| Team | able to create a team | 🛠 |
+| Team | able to delete owned team | 🛠 |
+| Team | able to add members to a team when admin of team | 🛠 |
+| Team | able to remove members from a team when admin of team | 🛠 |
+| Team | able to add members to a team when owner of team | 🛠 |
+| Team | able to remove members from a team when owner of team | 🛠 |
+| Team | able to list all team | 🛠 |
+| Team | able to view one team | 🛠 |
+| Team | able to leave a team | 🛠 |
+| Team | able to view members in a team | 🛠 |
+| Team Message | able to list all message in a team | 🛠 |
+| Team Message | able to get one message in a team | 🛠 |
+| Team Message | able to post message to team | 🛠 |
+| Team Message | able to delete message from team | 🛠 |
+| Team Message | able to edit message in team | 🛠 |
+| Team Message | able to upload approved files to team | 🛠 |
+| Team Message | able to delete uploaded files from team | 🛠 |
+| User Profile | able to fetch profile | ✅ |
+| User Profile | able to update profile | ✅ |
+| User Profile | able to add profile image | ✅ |
+| User Profile | able to remove profile image | ✅ |

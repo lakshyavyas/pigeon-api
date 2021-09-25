@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User - User Profile', type: :request, feature: true do
+RSpec.describe 'Core - User Profile', type: :request, feature: true do
   it 'able to fetch profile' do
     given_the_user
     user_able_to_login

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User - Team', type: :request, feature: true do
+RSpec.describe 'Core - Team', type: :request, feature: true do
   it 'able to create a team'
   it 'able to delete owned team'
   it 'able to add members to a team when admin of team'

@@ -2,18 +2,21 @@
 
 module Api
   module V1
-    module Admin
-      # Organization Controller
+    module Settings
+      # Organization controller
       class OrganizationController < BaseController
-        before_action { authenticate roles_config[:default_admin] }
+        before_action only: [:update] do
+          authenticate(roles_config[:default_admin])
+        end
+        before_action :authenticate, only: %i[index]
         before_action :update_organization, only: %i[update]
 
         def index
-          render_ok organization, Admin::OrganizationSerializer
+          render_ok organization, Iam::OrganizationSerializer
         end
 
         def update
-          render_ok organization, Admin::OrganizationSerializer
+          render_ok organization, Iam::OrganizationSerializer
         end
 
         private

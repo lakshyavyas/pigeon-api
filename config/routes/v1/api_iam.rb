@@ -8,5 +8,4 @@ namespace :iam do
   resources :avatar, only: %i[create] do
     delete '/', to: 'avatar#destroy', on: :collection
   end
-  resources :organization, only: %i[index]
 end

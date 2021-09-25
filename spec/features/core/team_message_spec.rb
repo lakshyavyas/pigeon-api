@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User - Team Message', type: :request, feature: true do
+RSpec.describe 'Core - Team Message', type: :request, feature: true do
   it 'able to list all message in a team'
   it 'able to get one message in a team'
   it 'able to post message to team'
