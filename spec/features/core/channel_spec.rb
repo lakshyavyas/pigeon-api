@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User - Channel', type: :request, feature: true do
+RSpec.describe 'Core - Channel', type: :request, feature: true do
   it 'able to list all channel'
   it 'able to view one channel'
   it 'able to leave a channel'

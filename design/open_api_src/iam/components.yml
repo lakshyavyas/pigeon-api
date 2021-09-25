@@ -42,28 +42,3 @@ schemas:
             type: string
           type:
             type: string
-  OrganizationObject:
-    type: object
-    required:
-      - name
-      - logo
-    properties:
-      name:
-        type: string
-      logo:
-        type: object
-        required:
-          - original
-          - small
-          - medium
-          - type
-        properties:
-          original:
-            type: string
-          small:
-            type: string
-          medium:
-            type: string
-          type:
-            type: string
-

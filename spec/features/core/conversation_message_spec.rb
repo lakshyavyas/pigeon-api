@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Guest -Conversation Message', type: :request, feature: true do
+RSpec.describe 'Core - Conversation Message', type: :request, feature: true do
   it 'able to list all message in a conversation'
   it 'able to get one message in a conversation'
   it 'able to post message to conversation'

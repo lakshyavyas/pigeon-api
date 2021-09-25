@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User - Simple Auths', type: :request, feature: true do
+RSpec.describe 'Core - Simple Auths', type: :request, feature: true do
   it 'able to login' do
     given_the_user
     user_able_to_login

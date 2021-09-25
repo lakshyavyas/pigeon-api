@@ -15,12 +15,21 @@ json_report = json_report['examples'].map { |obj| { status: obj['status'], descr
 json_report = json_report.group_by { |item| item[:class] }
 @headings = json_report.keys.sort
 
-md_file = ERB.new("# Pigeon API Features
+md_file = "# Pigeon API Features\n"
+md_file += "## Core Features\n"
+md_file += "| Section | Feature | Status |\n"
+md_file += "| :---: | :---: | :---: |\n"
+@headings.each do |heading|
+  next unless heading.start_with?('Core -')
 
-<% @headings.each do |heading| %>
-## <%= heading %>
-<% json_report[heading].each do |feature| %>- <%= feature[:description] %>  <%= (feature[:status]=='pending')?'🛠':(feature[:status]=='passed')?'✅':'❌'  %>
-\n
-<% end end %>".gsub(/^\s+/, ""), trim_mode: nil).result
+  json_report[heading].each do |feature|
+    status = if feature[:status] == 'pending'
+               '🛠'
+             else
+               (feature[:status] == 'passed') ? '✅' : '❌'
+             end
+    md_file += "| #{heading.gsub('Core - ', '')} | #{feature[:description]} | #{status} |\n"
+  end
+end
 File.write('design/api_features.md', md_file)
 File.delete(design_file_path) if File.exists?(design_file_path)

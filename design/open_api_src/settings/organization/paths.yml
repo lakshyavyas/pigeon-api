@@ -1,8 +1,9 @@
 paths:
-  /admin/organization:
+  /settings/organization:
     get:
       tags:
         - authenticated
+        - settings
         - organization
       summary: Get organization details
       operationId: getOrganization
@@ -21,6 +22,7 @@ paths:
     put:
       tags:
         - authenticated
+        - settings
         - organization
       summary: Update organization profile
       operationId: updateOrganization
@@ -42,10 +44,11 @@ paths:
                 $ref: '#/components/schemas/OrganizationObject'
         '403':
           description: Unauthenticated access
-  /admin/organization/logo:
+  /settings/organization/logo:
     post:
       tags:
         - authenticated
+        - settings
         - organization
       summary: Update organization logo
       operationId: updateOrganizationLogo
@@ -70,6 +73,7 @@ paths:
     delete:
       tags:
         - authenticated
+        - settings
         - organization
       summary: Remove organization logo
       operationId: removeOrganizationLogo

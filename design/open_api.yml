@@ -21,14 +21,14 @@ tags:
   description: IAM Me API's
 - name: iam_avatar
   description: IAM Avatar API's
-- name: iam_organization
-  description: IAM Organization API's
 - name: auths
   description: Auth API's
 - name: authenticated
   description: Authenticated API's
 - name: organization
   description: Organization
+- name: settings
+  description: Settings
 components:
   schemas:
     SimpleAuthLoginBody:
@@ -84,6 +84,29 @@ components:
               type: string
             type:
               type: string
+    ErrorObject:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        backtrace:
+          type: string
+    AccessObject:
+      type: object
+      required:
+      - access_token
+      - renew_token
+      - expires_at
+      properties:
+        access_token:
+          type: string
+        renew_token:
+          type: string
+        expires_at:
+          type: string
+          format: datetime
     OrganizationObject:
       type: object
       required:
@@ -108,29 +131,6 @@ components:
               type: string
             type:
               type: string
-    ErrorObject:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-        backtrace:
-          type: string
-    AccessObject:
-      type: object
-      required:
-      - access_token
-      - renew_token
-      - expires_at
-      properties:
-        access_token:
-          type: string
-        renew_token:
-          type: string
-        expires_at:
-          type: string
-          format: datetime
     OrgProfileUpdateBody:
       type: object
       required:
@@ -281,30 +281,11 @@ paths:
                 "$ref": "#/components/schemas/UserObject"
         '403':
           description: Unauthenticated access
-  "/iam/organization":
+  "/settings/organization":
     get:
       tags:
       - authenticated
-      - iam
-      - iam_organization
-      summary: Get organization details
-      operationId: userGetOrganization
-      description: Get organization details
-      security:
-      - authenticatedRequest: []
-      responses:
-        '200':
-          description: Successfully fetched organization profile
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/OrganizationObject"
-        '403':
-          description: Unauthenticated access
-  "/admin/organization":
-    get:
-      tags:
-      - authenticated
+      - settings
       - organization
       summary: Get organization details
       operationId: getOrganization
@@ -323,6 +304,7 @@ paths:
     put:
       tags:
       - authenticated
+      - settings
       - organization
       summary: Update organization profile
       operationId: updateOrganization
@@ -344,10 +326,11 @@ paths:
                 "$ref": "#/components/schemas/OrganizationObject"
         '403':
           description: Unauthenticated access
-  "/admin/organization/logo":
+  "/settings/organization/logo":
     post:
       tags:
       - authenticated
+      - settings
       - organization
       summary: Update organization logo
       operationId: updateOrganizationLogo
@@ -372,6 +355,7 @@ paths:
     delete:
       tags:
       - authenticated
+      - settings
       - organization
       summary: Remove organization logo
       operationId: removeOrganizationLogo
