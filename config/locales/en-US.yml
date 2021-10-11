@@ -21,10 +21,20 @@ en:
       aspect_ratio_is_not: "must have an aspect ratio of %{aspect_ratio}"
       aspect_ratio_unknown: "has an unknown aspect ratio"
   app:
+    arbitrary:
+      team: Team
+      user: User
     error:
       bad_request: "Bad Request"
       unauthorized: "Unauthorized"
       server_error: "Server Error"
+      no_role_for_object: "Not allowed to access: %{object_name} with id: %{id}"
+      resource_to_add_not_exists: "No %{object_name} with id: %{id} exists to add to %{resource_name}"
       access_token_expired: "Access Token Expired"
       access_token_inactive: "Invalid Access Token"
       not_implemented: "Not implemented"
+    user_roles:
+      invalid: "Invalid User Role"
+      exists: "User Role already exists"
+      not_exists: "User Role not exists"
+      cannot_delete_only_owner: "Cannot remove only owner"

@@ -7,15 +7,15 @@ module Api
       extend ActiveSupport::Concern
 
       %i[ok created unprocessable_entity internal_server_error bad_request unauthorized].each do |name|
-        define_method :"render_#{name}" do |obj, serializer_klass|
-          render_obj obj, serializer_klass, name.to_sym
+        define_method :"render_#{name}" do |obj, serializer_klass, serializer_params = {}|
+          render_obj obj, serializer_klass, serializer_params, name.to_sym
         end
       end
 
       private
 
-      def render_obj(obj, serializer_klass, status)
-        render json: serializer_klass.new(obj), status: status
+      def render_obj(obj, serializer_klass, serializer_params, status)
+        render json: serializer_klass.new(obj, serializer_params), status: status
       end
     end
   end

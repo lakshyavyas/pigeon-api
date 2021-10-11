@@ -6,27 +6,27 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
   attr_accessor :organization
 
   it 'able to fetch organization profile' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     user_able_fetch_org_profile
   end
 
   it 'admin able to update organization profile' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     user_able_to_update_org(:name, 15, 401)
-    given_the_logged_in_admin
+    given_logged_in_admin
     user_able_to_update_org(:name, 14, 200)
-    user_able_to_update_org(:name, 50, 422)
+    user_able_to_update_org(:name, 500, 422)
   end
 
   it 'admin able to create organization logo' do
-    given_the_logged_in_admin
+    given_logged_in_admin
     able_to_upload_logo
     validation_error_image_size
     validation_error_image_type
   end
 
   it 'admin able to delete organization logo' do
-    given_the_logged_in_admin
+    given_logged_in_admin
     able_to_delete_logo
   end
 

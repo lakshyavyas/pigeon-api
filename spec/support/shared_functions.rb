@@ -12,7 +12,7 @@ module SharedFunctions
     expect(user.simple_auth).not_to eq(nil)
   end
 
-  def given_the_user
+  def given_normal_user
     @user = FactoryBot.create(:simple_auth_users)
     expect(user.first_name).not_to eq(nil)
     expect(user.last_name).not_to eq(nil)
@@ -20,13 +20,27 @@ module SharedFunctions
     expect(user.simple_auth).not_to eq(nil)
   end
 
-  def given_the_logged_in_admin
+  def given_logged_in_admin
     given_admin_user
     @access = user.accesses.create(token_type: :api)
   end
 
-  def given_the_logged_in_user
-    given_the_user
+  def given_logged_in_normal_user
+    given_normal_user
+    @access = user.accesses.create(token_type: :api)
+  end
+
+  def given_other_user
+    @other_user = FactoryBot.create(:simple_auth_users)
+  end
+
+  def given_fake_other_user
+    user_struct = Struct.new(:obj_id)
+    @other_user = user_struct.new(1231)
+  end
+
+  def given_logged_in_other_user
+    given_other_user
     @access = user.accesses.create(token_type: :api)
   end
 

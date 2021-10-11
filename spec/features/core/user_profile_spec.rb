@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Core - User Profile', type: :request, feature: true do
   it 'able to fetch profile' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     user_able_fetch_profile
     given_expired_access
     user_unable_fetch_profile
@@ -15,22 +15,22 @@ RSpec.describe 'Core - User Profile', type: :request, feature: true do
   end
 
   it 'able to update profile' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     user_able_to_update(first_name, 10)
     user_able_to_update(last_name, 10)
-    validation_error_length(first_name, 50)
-    validation_error_length(last_name, 50)
+    validation_error_length(first_name, 256)
+    validation_error_length(last_name, 256)
   end
 
   it 'able to add profile image' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     able_to_upload_avatar
     validation_error_image_size
     validation_error_image_type
   end
 
   it 'able to remove profile image' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     able_to_delete_avatar
   end
 

@@ -1,0 +1,48 @@
+schemas:
+  ArrayOfTeamMemberObject:
+    type: array
+    items:
+      $ref: '#/components/schemas/TeamMemberObject'
+  TeamMemberObject:
+    type: object
+    properties:
+      obj_id:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      full_name:
+        type: string
+      role:
+        type: string
+      avatar:
+        type: object
+        properties:
+          original:
+            type: string
+          small:
+            type: string
+          medium:
+            type: string
+          type:
+            type: string
+  TeamMemberCreateBody:
+    type: object
+    required:
+      - user_id
+      - role
+    properties:
+      user_id:
+        type: string
+      role:
+        type: string
+  TeamMemberUpdateBody:
+    type: object
+    required:
+      - role
+    properties:
+      role:
+        type: string

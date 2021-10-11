@@ -1,0 +1,128 @@
+paths:
+  /teams:
+    post:
+      tags:
+        - authenticated
+        - teams
+      summary: Create a team
+      operationId: teamsCreate
+      description: Create a team
+      security:
+        - authenticatedRequest: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCreateBody'
+      responses:
+        '200':
+          description: Successfully created a team
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamObject'
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    get:
+      tags:
+        - authenticated
+        - teams
+      summary: Get my teams
+      operationId: teamsIndex
+      description: Get my teams
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Successfully fetched teams
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfTeamObject'
+        '403':
+          description: Unauthenticated access
+  /teams/{teamId}:
+    get:
+      tags:
+        - authenticated
+        - teams
+      summary: Get single team
+      operationId: teamsShow
+      description: Get single team
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: teamId
+          schema:
+            type: string
+          required: true
+          description: id of team
+      responses:
+        '200':
+          description: Successfully fetched team
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamObject'
+        '403':
+          description: Unauthenticated access
+    put:
+      tags:
+        - authenticated
+        - teams
+      summary: Update a single team
+      operationId: teamsUpdate
+      description:  Update a single team
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: teamId
+          schema:
+            type: string
+          required: true
+          description: id of team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamUpdateBody'
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamObject'
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+        - authenticated
+        - teams
+      summary: Delete a single team
+      operationId: teamsDelete
+      description: Delete a single team
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: teamId
+          schema:
+            type: string
+          required: true
+          description: id of team
+      responses:
+        '200':
+          description: Delete Successfull
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access

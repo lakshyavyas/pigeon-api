@@ -5,7 +5,7 @@ disconnected: true
 filename: design/erd
 filetype: pdf
 indirect: true
-inheritance: false
+inheritance: true
 markup: true
 notation: bachman
 orientation: vertical

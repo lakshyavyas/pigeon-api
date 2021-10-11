@@ -1,5 +1,4 @@
 # Pigeon API Features
-
 ## Core Features
 | Section | Feature | Status |
 | :---: | :---: | :---: |
@@ -32,16 +31,22 @@
 | Organization Settings | admin able to delete organization logo | ✅ |
 | Simple Auths | able to login | ✅ |
 | Simple Auths | able to logout | ✅ |
-| Team | able to create a team | 🛠 |
-| Team | able to delete owned team | 🛠 |
-| Team | able to add members to a team when admin of team | 🛠 |
-| Team | able to remove members from a team when admin of team | 🛠 |
-| Team | able to add members to a team when owner of team | 🛠 |
-| Team | able to remove members from a team when owner of team | 🛠 |
-| Team | able to list all team | 🛠 |
-| Team | able to view one team | 🛠 |
-| Team | able to leave a team | 🛠 |
-| Team | able to view members in a team | 🛠 |
+| Team | able to create a team | ✅ |
+| Team | able to list all team | ✅ |
+| Team | able to view one team | ✅ |
+| Team | able to delete owned team | ✅ |
+| Team | admin able to delete any team | ✅ |
+| Team | able to update owned team | ✅ |
+| Team | admin able to update any team | ✅ |
+| Team | able to add members to owned team | ✅ |
+| Team | able to add members to a team when admin of team | ✅ |
+| Team | able to view members in a team when admin of team | ✅ |
+| Team | able to view members in a team when member of team | ✅ |
+| Team | able to remove members from a team | ✅ |
+| Team | able to remove members from a team when admin of team | ✅ |
+| Team | able to leave a team | ✅ |
+| Team | able to update team member | ✅ |
+| Team | able to update team member when admin of team | ✅ |
 | Team Message | able to list all message in a team | 🛠 |
 | Team Message | able to get one message in a team | 🛠 |
 | Team Message | able to post message to team | 🛠 |
