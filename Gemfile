@@ -15,7 +15,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.5'
 gem 'rack-cors'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.5'
 
 group :development, :test do
   gem 'annotate'
