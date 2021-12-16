@@ -8,10 +8,19 @@ AllCops:
     - 'bin/*'
     - 'db/**/*'
     - 'vendor/**/*'
+    - 'lib/pg_power/**/*'
+Style/Documentation:
+  Enabled: true
+  Exclude:
+    - 'app/models/core/**/*'
 Metrics/AbcSize:
   Enabled: true
   Exclude:
     - 'spec/**/*'
+Metrics/MethodLength:
+  Enabled: true
+  Exclude:
+    - 'lib/**/*'
 Metrics/BlockLength:
   Enabled: true
   Exclude:

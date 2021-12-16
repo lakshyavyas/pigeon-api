@@ -19,7 +19,7 @@ module Api
         private
 
         def authorize_user
-          simple_auth = User.find_by(email: params[:username])&.simple_auth&.authenticate(params[:password])
+          simple_auth = Core::User.find_by(email: params[:username])&.simple_auth&.authenticate(params[:password])
           if simple_auth
             @user = simple_auth.user
             return
@@ -30,12 +30,12 @@ module Api
 
         def gen_access
           @access = user.accesses.create(token_type: :api)
-          render_server_error standard_error('app.error.server_error'), Utils::ErrorSerializer unless access
+          render_internal_server_error standard_error('app.error.server_error'), Utils::ErrorSerializer unless access
         end
 
         def deactivate_token
           res = access.update(active: false)
-          render_server_error standard_error('app.error.server_error'), Utils::ErrorSerializer unless res
+          render_internal_server_error standard_error('app.error.server_error'), Utils::ErrorSerializer unless res
         end
       end
     end

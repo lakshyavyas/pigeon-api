@@ -10,13 +10,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'colorize'
 gem 'image_processing', '~> 1.2'
+gem 'multi_schema'
 gem 'mutils'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.5'
 gem 'rack-cors'
-gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+gem 'rails', '~> 7.0.0'
 gem 'redis', '~> 4.5'
-
 group :development, :test do
   gem 'annotate'
   gem 'brakeman'
@@ -25,6 +25,7 @@ group :development, :test do
   gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry-rails'
   gem 'rails-erd'
   gem 'rspec-rails'
   gem 'rubocop-rails'

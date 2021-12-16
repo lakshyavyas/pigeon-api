@@ -63,7 +63,7 @@ RSpec.describe 'Core - Organization Settings', type: :request, feature: true do
   end
 
   def validation_error_image_size
-    file = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'images', 'big_image.jpg'), 'image/jpg')
+    file = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'images', 'big_image.jpeg'), 'image/jpeg')
     post '/api/v1/settings/organization/logo',
          params: { logo: file },
          headers: { HTTP_ACCESS_TOKEN: access[:access_token] }

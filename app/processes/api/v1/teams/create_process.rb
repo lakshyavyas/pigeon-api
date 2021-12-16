@@ -15,7 +15,7 @@ module Api
         end
 
         def work
-          team = Group.team.new(create_team_params)
+          team = Core::Group.team.new(create_team_params)
           team.meta_data = { owner: owner.id }
           self.error = team.errors unless team.save
         end

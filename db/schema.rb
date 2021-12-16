@@ -10,12 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_211441) do
+ActiveRecord::Schema.define(version: 2021_12_16_194661) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accesses", force: :cascade do |t|
+  connection.execute "CREATE SCHEMA IF NOT EXISTS public"
+  connection.execute "CREATE SCHEMA IF NOT EXISTS  core"
+
+  connection.schema_search_path = "public, core"
+
+  create_table "core.accesses", force: :cascade do |t|
     t.string "access_token"
     t.string "renew_token"
     t.integer "token_type"
@@ -24,38 +29,38 @@ ActiveRecord::Schema.define(version: 2021_09_18_211441) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_accesses_on_user_id"
+    t.index ["user_id"], name: "index_core.accesses_on_user_id"
   end
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "core.active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["blob_id"], name: "index_core.active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "core.active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.string "checksum"
     t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+    t.index ["key"], name: "index_core.active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
+  create_table "core.active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "core.groups", force: :cascade do |t|
     t.string "name"
     t.integer "group_type"
     t.jsonb "meta_data"
@@ -63,14 +68,14 @@ ActiveRecord::Schema.define(version: 2021_09_18_211441) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "guests", force: :cascade do |t|
+  create_table "core.guests", force: :cascade do |t|
     t.jsonb "meta_data"
     t.jsonb "identity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "core.messages", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
     t.string "sender_type", null: false
@@ -78,51 +83,43 @@ ActiveRecord::Schema.define(version: 2021_09_18_211441) do
     t.jsonb "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipient_type", "recipient_id"], name: "index_messages_on_recipient"
-    t.index ["sender_type", "sender_id"], name: "index_messages_on_sender"
+    t.index ["recipient_type", "recipient_id"], name: "index_core.messages_on_recipient"
+    t.index ["sender_type", "sender_id"], name: "index_core.messages_on_sender"
   end
 
-  create_table "organizations", force: :cascade do |t|
+  create_table "core.organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "scope"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "simple_auths", force: :cascade do |t|
+  create_table "core.simple_auths", force: :cascade do |t|
     t.string "password_digest"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_simple_auths_on_user_id"
+    t.index ["user_id"], name: "index_core.simple_auths_on_user_id"
   end
 
-  create_table "user_groups", force: :cascade do |t|
+  create_table "core.user_groups", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
     t.boolean "owner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_user_groups_on_group_id"
-    t.index ["user_id"], name: "index_user_groups_on_user_id"
+    t.index ["group_id"], name: "index_core.user_groups_on_group_id"
+    t.index ["user_id"], name: "index_core.user_groups_on_user_id"
   end
 
-  create_table "user_roles", force: :cascade do |t|
+  create_table "core.user_roles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "role_arn"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_user_roles_on_user_id"
+    t.index ["user_id"], name: "index_core.user_roles_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "core.users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
@@ -130,11 +127,11 @@ ActiveRecord::Schema.define(version: 2021_09_18_211441) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "accesses", "users"
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "simple_auths", "users"
-  add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "users"
-  add_foreign_key "user_roles", "users"
+  add_foreign_key "core.accesses", "users"
+  add_foreign_key "core.active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "core.active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "core.simple_auths", "users"
+  add_foreign_key "core.user_groups", "groups"
+  add_foreign_key "core.user_groups", "users"
+  add_foreign_key "core.user_roles", "users"
 end

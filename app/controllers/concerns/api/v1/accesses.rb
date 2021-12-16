@@ -8,9 +8,9 @@ module Api
 
       def authenticate(role = roles_config[:default_user])
         access_token = request.headers['HTTP_ACCESS_TOKEN']
-        @access = Access.find_by(access_token: access_token)
+        @access = Core::Access.find_by(access_token: access_token)
         @user = access&.user
-        @organization = Organization.first
+        @organization = Core::Organization.first
         check_access_token(role)
       rescue StandardError => e
         render_unauthorized e, Utils::ErrorSerializer

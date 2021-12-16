@@ -18,7 +18,7 @@ RSpec.describe 'Core - Simple Auths', type: :request, feature: true do
   end
 
   def error_if_some_error
-    allow_any_instance_of(Access).to receive(:update).and_return(false)
+    allow_any_instance_of(Core::Access).to receive(:update).and_return(false)
     delete '/api/v1/auth/simple_auth', headers: { HTTP_ACCESS_TOKEN: access[:access_token] }
     expect(response.status).to eq(500)
   end
