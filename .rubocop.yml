@@ -8,7 +8,7 @@ AllCops:
     - 'bin/*'
     - 'db/**/*'
     - 'vendor/**/*'
-    - 'lib/pg_power/**/*'
+    - 'lib/**/*'
 Style/Documentation:
   Enabled: true
   Exclude:

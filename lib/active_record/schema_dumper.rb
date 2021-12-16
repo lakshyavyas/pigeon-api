@@ -65,7 +65,7 @@ module ActiveRecord
 
         case pk
         when String
-          tbl.print ", primary_key: #{pk.inspect}" unless pk == "id"
+          tbl.print ", primary_key: #{pk.inspect}" unless pk == 'id'
           pkcol = columns.detect { |c| c.name == pk }
           pkcolspec = column_spec_for_primary_key_custom(pkcol)
           unless pkcolspec.empty?
@@ -77,19 +77,20 @@ module ActiveRecord
         when Array
           tbl.print ", primary_key: #{pk.inspect}"
         else
-          tbl.print ", id: false"
+          tbl.print ', id: false'
         end
 
         table_options = @connection.table_options(table)
-        if table_options.present?
-          tbl.print ", #{format_options(table_options)}"
-        end
+        tbl.print ", #{format_options(table_options)}" if table_options.present?
 
-        tbl.puts ", force: :cascade do |t|"
+        tbl.puts ', force: :cascade do |t|'
 
         # then dump all non-primary key columns
         columns.each do |column|
-          raise StandardError, "Unknown type '#{column.sql_type}' for column '#{column.name}'" unless @connection.valid_type?(column.type)
+          unless @connection.valid_type?(column.type)
+            raise StandardError,
+                  "Unknown type '#{column.sql_type}' for column '#{column.name}'"
+          end
           next if column.name == pk
 
           type, colspec = column_spec(column)
@@ -105,12 +106,12 @@ module ActiveRecord
         indexes_in_create(table, tbl)
         check_constraints_in_create(table, tbl) if @connection.supports_check_constraints?
 
-        tbl.puts "  end"
+        tbl.puts '  end'
         tbl.puts
 
         tbl.rewind
         stream.print tbl.read
-      rescue => e
+      rescue StandardError => e
         stream.puts "# Could not dump table #{table.inspect} because of following #{e.class}"
         stream.puts "#   #{e.message}"
         stream.puts
@@ -122,7 +123,7 @@ module ActiveRecord
     def column_spec_for_primary_key_custom(column)
       spec = {}
       spec[:id] = schema_type_custom(column).inspect unless default_primary_key_custom?(column)
-      spec.merge!(prepare_column_options(column).except!(:null,:default))
+      spec.merge!(prepare_column_options(column).except!(:null, :default))
       spec
     end
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: core.users
@@ -29,7 +30,9 @@ RSpec.describe Core::User, type: :model do
   it { is_expected.to have_many(:inbound_messages) }
   it { is_expected.to have_many(:outbound_messages) }
   it { is_expected.to have_many(:accesses) }
-  it { is_expected.to validate_content_type_of(:avatar).allowing('image/png', 'image/jpeg').rejecting('text/plain', 'text/xml') }
-  it { is_expected.to validate_size_of(:avatar).less_than(512.kilobytes) }
 
+  allowed_types = %w[image/png image/jpeg]
+  rejected_types = %w[text/plain text/xml]
+  it { is_expected.to validate_content_type_of(:avatar).allowing(allowed_types).rejecting(rejected_types) }
+  it { is_expected.to validate_size_of(:avatar).less_than(512.kilobytes) }
 end
