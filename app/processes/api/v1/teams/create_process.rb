@@ -5,19 +5,25 @@ module Api
     module Teams
       # Process to create teams
       class CreateProcess < DryProcess
-        attr_accessor :owner, :create_team_params
+        include RoleFactory
+        attr_accessor :user, :create_team_params
 
         private
 
         def init
-          self.owner = args[:owner]
+          self.user = args[:user]
           self.create_team_params = args[:create_team_params]
         end
 
         def work
-          team = Core::Group.team.new(create_team_params)
-          team.meta_data = { owner: owner.id }
-          self.error = team.errors unless team.save
+          team = Core::Team.new(create_team_params)
+          team.meta_data = { owner: user.id }
+          if team.save
+            user.user_roles.owner.create(roleable: team, logical_name: 'team')
+            self.output = team
+          else
+            self.error = team
+          end
         end
       end
     end

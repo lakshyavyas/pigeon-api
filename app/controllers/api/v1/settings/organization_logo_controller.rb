@@ -5,7 +5,8 @@ module Api
     module Settings
       # Organization Logo Controller
       class OrganizationLogoController < BaseController
-        before_action { authenticate roles_config[:default_admin] }
+        include OrganizationSettingsMethods
+        before_action :authenticate, :check_org_owner_admin
         before_action :create_org_avatar, only: %i[create]
         before_action :delete_org_avatar, only: %i[destroy]
 

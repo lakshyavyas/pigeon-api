@@ -1,9 +1,0 @@
-config: &config
-  default_user: 'user::*'
-  default_admin: 'admin::*'
-test:
-  <<: *config
-development:
-  <<: *config
-production:
-  <<: *config

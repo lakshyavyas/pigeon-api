@@ -1,0 +1,32 @@
+schemas:
+  ArrayOfTeamObject:
+    type: array
+    items:
+      $ref: '#/components/schemas/TeamObject'
+  TeamObject:
+    type: object
+    properties:
+      name:
+        type: string
+      obj_id:
+        type: string
+      role:
+        type: string
+  TeamCreateBody:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      meta_data:
+        type: object
+  TeamUpdateBody:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      meta_data:
+        type: object

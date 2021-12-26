@@ -28,3 +28,7 @@ tags:
     description: Organization
   - name: settings
     description: Settings
+  - name: teams
+    description: Teams
+  - name: team_members
+    description: Team Members

@@ -7,8 +7,6 @@ securitySchemes:
 schemas:
   ErrorObject:
     type: object
-    required:
-      - message
     properties:
       message:
         type: string
@@ -16,10 +14,6 @@ schemas:
         type: string
   AccessObject:
     type: object
-    required:
-      - access_token
-      - renew_token
-      - expires_at
     properties:
       access_token:
         type: string

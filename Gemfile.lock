@@ -130,8 +130,6 @@ GEM
     minitest (5.15.0)
     msgpack (1.4.2)
     msgpack (1.4.2-java)
-    multi_schema (0.0.1)
-      rake
     mutils (1.2.2)
       dry-inflector
     nio4r (2.5.8)
@@ -249,6 +247,7 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    scatter_swap (0.0.3)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
     simplecov (0.21.2)
@@ -295,7 +294,6 @@ DEPENDENCIES
   faker
   image_processing (~> 1.2)
   listen (~> 3.3)
-  multi_schema
   mutils
   pg (~> 1.1)
   pry-rails
@@ -307,6 +305,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails
   rubocop-rspec
+  scatter_swap
   shoulda-matchers
   simplecov
   spring

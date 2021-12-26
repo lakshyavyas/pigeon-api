@@ -61,11 +61,12 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
   end
 
   create_table "core.groups", force: :cascade do |t|
-    t.string "name"
-    t.integer "group_type"
+    t.string "name", limit: 255
+    t.string "type", limit: 255, default: "Core::Team"
     t.jsonb "meta_data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["type"], name: "index_core.groups_on_type"
   end
 
   create_table "core.guests", force: :cascade do |t|
@@ -88,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
   end
 
   create_table "core.organizations", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 255
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -101,28 +102,22 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
     t.index ["user_id"], name: "index_core.simple_auths_on_user_id"
   end
 
-  create_table "core.user_groups", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
-    t.boolean "owner"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_core.user_groups_on_group_id"
-    t.index ["user_id"], name: "index_core.user_groups_on_user_id"
-  end
-
   create_table "core.user_roles", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "role_arn"
+    t.string "roleable_type", null: false
+    t.bigint "roleable_id", null: false
+    t.string "logical_name", limit: 255
+    t.integer "role_level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["roleable_type", "roleable_id"], name: "index_core.user_roles_on_roleable"
     t.index ["user_id"], name: "index_core.user_roles_on_user_id"
   end
 
   create_table "core.users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
+    t.string "first_name", limit: 255
+    t.string "last_name", limit: 255
+    t.string "email", limit: 255
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -131,7 +126,5 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
   add_foreign_key "core.active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "core.active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "core.simple_auths", "users"
-  add_foreign_key "core.user_groups", "groups"
-  add_foreign_key "core.user_groups", "users"
   add_foreign_key "core.user_roles", "users"
 end

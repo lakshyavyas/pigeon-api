@@ -5,28 +5,26 @@
 # Table name: core.users
 #
 #  id         :integer          not null, primary key
-#  first_name :string
-#  last_name  :string
-#  email      :string
+#  first_name :string(255)
+#  last_name  :string(255)
+#  email      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 module Core
   class User < ApplicationRecord
-    validates :first_name, presence: true, length: { minimum: 2, maximum: 20 }
-    validates :last_name, presence: true, length: { minimum: 2, maximum: 20 }
+    validates :first_name, presence: true, length: { minimum: 2, maximum: 255 }
+    validates :last_name, presence: true, length: { minimum: 2, maximum: 255 }
     validates :email,
               presence: true,
-              length: { minimum: 2, maximum: 100 },
+              length: { minimum: 2, maximum: 255 },
               uniqueness: true,
               format: { with: URI::MailTo::EMAIL_REGEXP }
 
     has_one :simple_auth, dependent: :destroy
     has_many :user_roles, dependent: :destroy
-    has_many :user_groups
     has_many :accesses
-    has_many :groups, through: :user_groups
     has_many :inbound_messages, as: :recipient, class_name: 'Core::Message'
     has_many :outbound_messages, as: :sender, class_name: 'Core::Message'
     has_one_attached :avatar
@@ -36,7 +34,7 @@ module Core
       if avatar&.attached?
         cdn_blob_urls(avatar)
       else
-        default_avatar_url(first_name)
+        default_image_url(first_name)
       end
     end
   end

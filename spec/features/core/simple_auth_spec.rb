@@ -4,16 +4,16 @@ require 'rails_helper'
 
 RSpec.describe 'Core - Simple Auths', type: :request, feature: true do
   it 'able to login' do
-    given_the_user
+    given_normal_user
     user_able_to_login
     user_able_fetch_profile
     error_with_invalid_credentials
   end
 
   it 'able to logout' do
-    given_the_logged_in_user
+    given_logged_in_normal_user
     user_able_to_logout
-    given_the_logged_in_user
+    given_logged_in_normal_user
     error_if_some_error
   end
 
