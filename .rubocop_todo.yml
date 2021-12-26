@@ -1,4 +1,0 @@
-Metrics/MethodLength:
-  Enabled: true
-  Exclude:
-    - app/controllers/concerns/api/v1/groups/teams_methods.rb
