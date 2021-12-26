@@ -5,8 +5,8 @@
 # Table name: core.guests
 #
 #  id         :integer          not null, primary key
-#  meta_data  :jsonb
-#  identity   :jsonb
+#  meta_data  :jsonb            default("{}"), not null
+#  identity   :jsonb            default("{}"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -31,6 +31,7 @@ module Api
         def module_prefix
           mp = ''
           mp = 't' if request.path.gsub('/api/v1/', '').start_with?('teams')
+          mp = 'ch' if request.path.gsub('/api/v1/', '').start_with?('channels')
 
           mp
         end

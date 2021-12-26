@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    module TeamMembers
+    module ChannelMembers
       class ListProcess < DryProcess # :nodoc:
         include RoleFactory
         attr_accessor :group, :user

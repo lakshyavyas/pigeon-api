@@ -112,7 +112,7 @@ RSpec.describe 'Core - Team', type: :request, feature: true do
     given_other_user
     given_a_team_created_by_other_user('member')
     given_other_user
-    able_to_add_member_to_team('admin', 201)
+    given_other_user_added_to_team('admin')
     able_to_list_team_members(3)
   end
 
@@ -261,8 +261,6 @@ RSpec.describe 'Core - Team', type: :request, feature: true do
     expect(response.status).to eq(200)
     teams = JSON.parse(response.body, symbolize_names: true)
     expect(teams.length).to eq(2)
-    expect(teams[0][:role].start_with?('owner')).to eq(true)
-    expect(teams[1][:role].start_with?('member')).to eq(true)
   end
 
   def user_able_to_create_a_team
@@ -295,11 +293,15 @@ RSpec.describe 'Core - Team', type: :request, feature: true do
 
   def given_a_team_created_by_user
     @team = FactoryBot.create(:team)
+    team.meta_data = { owner: user.id }
+    team.save
     user.user_roles.owner.create(roleable: team, logical_name: 'team')
   end
 
   def given_a_team_created_by_other_user(user_role = 'member')
     @team = FactoryBot.create(:team)
+    team.meta_data = { owner: other_user.id }
+    team.save
     other_user.user_roles.owner.create(roleable: team, logical_name: 'team')
     return unless %w[member admin owner].include?(user_role)
 

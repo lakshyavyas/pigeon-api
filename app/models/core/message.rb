@@ -9,7 +9,7 @@
 #  recipient_id   :integer          not null
 #  sender_type    :string           not null
 #  sender_id      :integer          not null
-#  data           :jsonb
+#  meta_data      :jsonb            default("{}"), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -23,6 +23,7 @@ module Core
   class Message < ApplicationRecord
     belongs_to :recipient, polymorphic: true
     belongs_to :sender, polymorphic: true
-    validates :data, presence: true
+    validates :meta_data, presence: true
+    serialize :meta_data, HashSerializer
   end
 end

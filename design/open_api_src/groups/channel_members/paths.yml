@@ -1,0 +1,129 @@
+paths:
+  /channels/{channelId}/members:
+    post:
+      tags:
+        - authenticated
+        - channel_members
+      summary: Add member to channel
+      operationId: channelMembersCreate
+      description: Add member to channel
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelMemberCreateBody'
+      responses:
+        '200':
+          description: Successfully added channel member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMemberObject'
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    get:
+      tags:
+        - authenticated
+        - channel_members
+      summary: Get members in a channel
+      operationId: channelMembersIndex
+      description: Get members in a channel
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      responses:
+        '200':
+          description: Successfully fetched channels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfChannelMemberObject'
+        '403':
+          description: Unauthenticated access
+  /channels/{channelId}/members/{userId}:
+    put:
+      tags:
+        - authenticated
+        - channel_members
+      summary: Update a single channel member
+      operationId: channelMembersUpdate
+      description:  Update a single channel member
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: id of member to update
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelMemberUpdateBody'
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMemberObject'
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+        - authenticated
+        - channel_members
+      summary: Delete a single channel
+      operationId: channelMembersDelete
+      description: Delete a single channel
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: id of member to update
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      responses:
+        '200':
+          description: Delete Successfull
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access

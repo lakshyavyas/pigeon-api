@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    module TeamMembers
+    module ChannelMembers
       class CreateProcess < DryProcess # :nodoc:
         include RoleFactory
         include UserFactory
@@ -20,7 +20,7 @@ module Api
 
         def work
           self.output = fetch_user(target_userid)
-          res = output.user_roles.send(target_role).create(roleable: group, logical_name: 'team')
+          res = output.user_roles.send(target_role).create(roleable: group, logical_name: 'channel')
           self.error = res unless res.persisted?
         end
 
@@ -29,8 +29,15 @@ module Api
         end
 
         def check_access
-          unless can_write_resource?(user, 'team', group)
-            not_allowed_to_access('team', group.obj_id)
+          if group.public? && user.id == target_user.id
+            return true if target_role == 'member'
+
+            validation_error(I18n.t('app.user_roles.public_channel_member_only'))
+            return false
+          end
+
+          unless can_write_resource?(user, 'channel', group)
+            not_allowed_to_access('channel', group.obj_id)
             return false
           end
 
@@ -38,7 +45,7 @@ module Api
         end
 
         def check_target_role_in_db
-          if get_role(target_user, 'team', group)
+          if get_role(target_user, 'channel', group)
             validation_error(I18n.t('app.user_roles.exists'))
             return false
           end
@@ -57,7 +64,7 @@ module Api
 
         def check_user
           unless target_user
-            resource_to_add_not_exists('user', 'team', group.obj_id)
+            resource_to_add_not_exists('user', 'channel', group.obj_id)
             return false
           end
 
