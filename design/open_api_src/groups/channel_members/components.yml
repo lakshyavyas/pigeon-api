@@ -1,0 +1,48 @@
+schemas:
+  ArrayOfChannelMemberObject:
+    type: array
+    items:
+      $ref: '#/components/schemas/ChannelMemberObject'
+  ChannelMemberObject:
+    type: object
+    properties:
+      obj_id:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      full_name:
+        type: string
+      role:
+        type: string
+      avatar:
+        type: object
+        properties:
+          original:
+            type: string
+          small:
+            type: string
+          medium:
+            type: string
+          type:
+            type: string
+  ChannelMemberCreateBody:
+    type: object
+    required:
+      - user_id
+      - role
+    properties:
+      user_id:
+        type: string
+      role:
+        type: string
+  ChannelMemberUpdateBody:
+    type: object
+    required:
+      - role
+    properties:
+      role:
+        type: string

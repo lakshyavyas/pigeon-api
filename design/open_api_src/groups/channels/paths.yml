@@ -1,0 +1,154 @@
+paths:
+  /channels/public:
+    get:
+      tags:
+        - authenticated
+        - channels
+      summary: Get public channels
+      operationId: channelsIndexPublic
+      description: Get public channels
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: false
+          description: search for channel by name
+      responses:
+        '200':
+          description: Successfully fetched channels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfChannelObject'
+        '403':
+          description: Unauthenticated access
+  /channels:
+    post:
+      tags:
+        - authenticated
+        - channels
+      summary: Create a channel
+      operationId: channelsCreate
+      description: Create a channel
+      security:
+        - authenticatedRequest: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelCreateBody'
+      responses:
+        '200':
+          description: Successfully created a channel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelObject'
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    get:
+      tags:
+        - authenticated
+        - channels
+      summary: Get all joined channels
+      operationId: channelsIndex
+      description: Get joined channels
+      security:
+        - authenticatedRequest: [ ]
+      responses:
+        '200':
+          description: Successfully fetched channels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfChannelObject'
+        '403':
+          description: Unauthenticated access
+  /channels/{channelId}:
+    get:
+      tags:
+        - authenticated
+        - channels
+      summary: Get single channel
+      operationId: channelsShow
+      description: Get single channel
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      responses:
+        '200':
+          description: Successfully fetched channel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelObject'
+        '403':
+          description: Unauthenticated access
+    put:
+      tags:
+        - authenticated
+        - channels
+      summary: Update a single channel
+      operationId: channelsUpdate
+      description:  Update a single channel
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelUpdateBody'
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelObject'
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+        - authenticated
+        - channels
+      summary: Delete a single channel
+      operationId: channelsDelete
+      description: Delete a single channel
+      security:
+        - authenticatedRequest: [ ]
+      parameters:
+        - in: path
+          name: channelId
+          schema:
+            type: string
+          required: true
+          description: id of channel
+      responses:
+        '200':
+          description: Delete Successfull
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access

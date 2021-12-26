@@ -33,8 +33,80 @@ tags:
   description: Teams
 - name: team_members
   description: Team Members
+- name: channels
+  description: Channels
+- name: channel_members
+  description: Channel Members
 components:
   schemas:
+    ArrayOfTeamObject:
+      type: array
+      items:
+        "$ref": "#/components/schemas/TeamObject"
+    TeamObject:
+      type: object
+      properties:
+        name:
+          type: string
+        obj_id:
+          type: string
+        role:
+          type: string
+    TeamCreateBody:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        meta_data:
+          type: object
+    TeamUpdateBody:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        meta_data:
+          type: object
+    ArrayOfChannelObject:
+      type: array
+      items:
+        "$ref": "#/components/schemas/ChannelObject"
+    ChannelObject:
+      type: object
+      properties:
+        name:
+          type: string
+        obj_id:
+          type: string
+        role:
+          type: string
+        public:
+          type: boolean
+    ChannelCreateBody:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        public:
+          type: boolean
+        meta_data:
+          type: object
+    ChannelUpdateBody:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        public:
+          type: boolean
+        meta_data:
+          type: object
     ArrayOfTeamMemberObject:
       type: array
       items:
@@ -82,37 +154,53 @@ components:
       properties:
         role:
           type: string
-    ArrayOfTeamObject:
+    ArrayOfChannelMemberObject:
       type: array
       items:
-        "$ref": "#/components/schemas/TeamObject"
-    TeamObject:
+        "$ref": "#/components/schemas/ChannelMemberObject"
+    ChannelMemberObject:
       type: object
       properties:
-        name:
-          type: string
         obj_id:
+          type: string
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        full_name:
           type: string
         role:
           type: string
-    TeamCreateBody:
+        avatar:
+          type: object
+          properties:
+            original:
+              type: string
+            small:
+              type: string
+            medium:
+              type: string
+            type:
+              type: string
+    ChannelMemberCreateBody:
       type: object
       required:
-      - name
+      - user_id
+      - role
       properties:
-        name:
+        user_id:
           type: string
-        meta_data:
-          type: object
-    TeamUpdateBody:
+        role:
+          type: string
+    ChannelMemberUpdateBody:
       type: object
       required:
-      - name
+      - role
       properties:
-        name:
+        role:
           type: string
-        meta_data:
-          type: object
     SimpleAuthLoginBody:
       type: object
       required:
@@ -208,6 +296,286 @@ components:
       in: header
       name: ACCESS_TOKEN
 paths:
+  "/teams":
+    post:
+      tags:
+      - authenticated
+      - teams
+      summary: Create a team
+      operationId: teamsCreate
+      description: Create a team
+      security:
+      - authenticatedRequest: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/TeamCreateBody"
+      responses:
+        '200':
+          description: Successfully created a team
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/TeamObject"
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    get:
+      tags:
+      - authenticated
+      - teams
+      summary: Get my teams
+      operationId: teamsIndex
+      description: Get my teams
+      security:
+      - authenticatedRequest: []
+      responses:
+        '200':
+          description: Successfully fetched teams
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ArrayOfTeamObject"
+        '403':
+          description: Unauthenticated access
+  "/teams/{teamId}":
+    get:
+      tags:
+      - authenticated
+      - teams
+      summary: Get single team
+      operationId: teamsShow
+      description: Get single team
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: teamId
+        schema:
+          type: string
+        required: true
+        description: id of team
+      responses:
+        '200':
+          description: Successfully fetched team
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/TeamObject"
+        '403':
+          description: Unauthenticated access
+    put:
+      tags:
+      - authenticated
+      - teams
+      summary: Update a single team
+      operationId: teamsUpdate
+      description: Update a single team
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: teamId
+        schema:
+          type: string
+        required: true
+        description: id of team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/TeamUpdateBody"
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/TeamObject"
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+      - authenticated
+      - teams
+      summary: Delete a single team
+      operationId: teamsDelete
+      description: Delete a single team
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: teamId
+        schema:
+          type: string
+        required: true
+        description: id of team
+      responses:
+        '200':
+          description: Delete Successfull
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+  "/channels/public":
+    get:
+      tags:
+      - authenticated
+      - channels
+      summary: Get public channels
+      operationId: channelsIndexPublic
+      description: Get public channels
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+        required: false
+        description: search for channel by name
+      responses:
+        '200':
+          description: Successfully fetched channels
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ArrayOfChannelObject"
+        '403':
+          description: Unauthenticated access
+  "/channels":
+    post:
+      tags:
+      - authenticated
+      - channels
+      summary: Create a channel
+      operationId: channelsCreate
+      description: Create a channel
+      security:
+      - authenticatedRequest: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ChannelCreateBody"
+      responses:
+        '200':
+          description: Successfully created a channel
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ChannelObject"
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    get:
+      tags:
+      - authenticated
+      - channels
+      summary: Get all joined channels
+      operationId: channelsIndex
+      description: Get joined channels
+      security:
+      - authenticatedRequest: []
+      responses:
+        '200':
+          description: Successfully fetched channels
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ArrayOfChannelObject"
+        '403':
+          description: Unauthenticated access
+  "/channels/{channelId}":
+    get:
+      tags:
+      - authenticated
+      - channels
+      summary: Get single channel
+      operationId: channelsShow
+      description: Get single channel
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: channelId
+        schema:
+          type: string
+        required: true
+        description: id of channel
+      responses:
+        '200':
+          description: Successfully fetched channel
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ChannelObject"
+        '403':
+          description: Unauthenticated access
+    put:
+      tags:
+      - authenticated
+      - channels
+      summary: Update a single channel
+      operationId: channelsUpdate
+      description: Update a single channel
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: channelId
+        schema:
+          type: string
+        required: true
+        description: id of channel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ChannelUpdateBody"
+      responses:
+        '200':
+          description: Update Successfull
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ChannelObject"
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
+    delete:
+      tags:
+      - authenticated
+      - channels
+      summary: Delete a single channel
+      operationId: channelsDelete
+      description: Delete a single channel
+      security:
+      - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: channelId
+        schema:
+          type: string
+        required: true
+        description: id of channel
+      responses:
+        '200':
+          description: Delete Successfull
+        '422':
+          description: Validation Error
+        '403':
+          description: Unauthenticated access
   "/teams/{teamId}/members":
     post:
       tags:
@@ -336,29 +704,36 @@ paths:
           description: Validation Error
         '403':
           description: Unauthenticated access
-  "/teams":
+  "/channels/{channelId}/members":
     post:
       tags:
       - authenticated
-      - teams
-      summary: Create a team
-      operationId: teamsCreate
-      description: Create a team
+      - channel_members
+      summary: Add member to channel
+      operationId: channelMembersCreate
+      description: Add member to channel
       security:
       - authenticatedRequest: []
+      parameters:
+      - in: path
+        name: channelId
+        schema:
+          type: string
+        required: true
+        description: id of channel
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/TeamCreateBody"
+              "$ref": "#/components/schemas/ChannelMemberCreateBody"
       responses:
         '200':
-          description: Successfully created a team
+          description: Successfully added channel member
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/TeamObject"
+                "$ref": "#/components/schemas/ChannelMemberObject"
         '422':
           description: Validation Error
         '403':
@@ -366,76 +741,64 @@ paths:
     get:
       tags:
       - authenticated
-      - teams
-      summary: Get my teams
-      operationId: teamsIndex
-      description: Get my teams
-      security:
-      - authenticatedRequest: []
-      responses:
-        '200':
-          description: Successfully fetched teams
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ArrayOfTeamObject"
-        '403':
-          description: Unauthenticated access
-  "/teams/{teamId}":
-    get:
-      tags:
-      - authenticated
-      - teams
-      summary: Get single team
-      operationId: teamsShow
-      description: Get single team
+      - channel_members
+      summary: Get members in a channel
+      operationId: channelMembersIndex
+      description: Get members in a channel
       security:
       - authenticatedRequest: []
       parameters:
       - in: path
-        name: teamId
+        name: channelId
         schema:
           type: string
         required: true
-        description: id of team
+        description: id of channel
       responses:
         '200':
-          description: Successfully fetched team
+          description: Successfully fetched channels
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/TeamObject"
+                "$ref": "#/components/schemas/ArrayOfChannelMemberObject"
         '403':
           description: Unauthenticated access
+  "/channels/{channelId}/members/{userId}":
     put:
       tags:
       - authenticated
-      - teams
-      summary: Update a single team
-      operationId: teamsUpdate
-      description: Update a single team
+      - channel_members
+      summary: Update a single channel member
+      operationId: channelMembersUpdate
+      description: Update a single channel member
       security:
       - authenticatedRequest: []
       parameters:
       - in: path
-        name: teamId
+        name: userId
         schema:
           type: string
         required: true
-        description: id of team
+        description: id of member to update
+      - in: path
+        name: channelId
+        schema:
+          type: string
+        required: true
+        description: id of channel
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/TeamUpdateBody"
+              "$ref": "#/components/schemas/ChannelMemberUpdateBody"
       responses:
         '200':
           description: Update Successfull
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/TeamObject"
+                "$ref": "#/components/schemas/ChannelMemberObject"
         '422':
           description: Validation Error
         '403':
@@ -443,19 +806,25 @@ paths:
     delete:
       tags:
       - authenticated
-      - teams
-      summary: Delete a single team
-      operationId: teamsDelete
-      description: Delete a single team
+      - channel_members
+      summary: Delete a single channel
+      operationId: channelMembersDelete
+      description: Delete a single channel
       security:
       - authenticatedRequest: []
       parameters:
       - in: path
-        name: teamId
+        name: userId
         schema:
           type: string
         required: true
-        description: id of team
+        description: id of member to update
+      - in: path
+        name: channelId
+        schema:
+          type: string
+        required: true
+        description: id of channel
       responses:
         '200':
           description: Delete Successfull

@@ -22,9 +22,13 @@ module Api
         end
 
         def validation
+          check_access
+        end
+
+        def check_access
           unless can_write_resource?(user, 'team', group)
             not_allowed_to_access('team', group.obj_id)
-            return
+            return false
           end
 
           true

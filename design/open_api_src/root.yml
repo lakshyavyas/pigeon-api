@@ -32,3 +32,7 @@ tags:
     description: Teams
   - name: team_members
     description: Team Members
+  - name: channels
+    description: Channels
+  - name: channel_members
+    description: Channel Members

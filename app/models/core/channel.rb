@@ -18,6 +18,9 @@
 # frozen_string_literal: true
 
 module Core
-  class Team < Group # :nodoc:
+  class Channel < Group # :nodoc:
+    def public?
+      meta_data[:is_public] == true
+    end
   end
 end

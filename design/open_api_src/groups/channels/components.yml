@@ -1,0 +1,38 @@
+schemas:
+  ArrayOfChannelObject:
+    type: array
+    items:
+      $ref: '#/components/schemas/ChannelObject'
+  ChannelObject:
+    type: object
+    properties:
+      name:
+        type: string
+      obj_id:
+        type: string
+      role:
+        type: string
+      public:
+        type: boolean
+  ChannelCreateBody:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      public:
+        type: boolean
+      meta_data:
+        type: object
+  ChannelUpdateBody:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      public:
+        type: boolean
+      meta_data:
+        type: object

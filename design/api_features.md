@@ -2,11 +2,25 @@
 ## Core Features
 | Section | Feature | Status |
 | :---: | :---: | :---: |
-| Channel | able to list all channel | 🛠 |
-| Channel | able to view one channel | 🛠 |
-| Channel | able to leave a channel | 🛠 |
-| Channel | able to join a public channel | 🛠 |
-| Channel | able to join a private channel only when invited | 🛠 |
+| Channel | able to create a channel | ✅ |
+| Channel | able to list all joined channel | ✅ |
+| Channel | able to list all public channels | ✅ |
+| Channel | able to search all public channels | ✅ |
+| Channel | able to view one channel | ✅ |
+| Channel | able to delete owned channel | ✅ |
+| Channel | admin able to delete any channel | ✅ |
+| Channel | able to update owned channel | ✅ |
+| Channel | admin able to update any channel | ✅ |
+| Channel | able to add members to owned channel | ✅ |
+| Channel | able to add members to a channel when admin of channel | ✅ |
+| Channel | able to view members in a channel when admin of channel | ✅ |
+| Channel | able to view members in a channel when member of channel | ✅ |
+| Channel | able to remove members from a channel | ✅ |
+| Channel | able to remove members from a channel when admin of channel | ✅ |
+| Channel | able to leave a channel | ✅ |
+| Channel | able to update channel member | ✅ |
+| Channel | able to update channel member when admin of channel | ✅ |
+| Channel | able to join any public channel | ✅ |
 | Channel Message | able to list all message in a channel | 🛠 |
 | Channel Message | able to get one message in a channel | 🛠 |
 | Channel Message | able to post message to channel | 🛠 |

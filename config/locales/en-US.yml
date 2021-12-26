@@ -24,6 +24,7 @@ en:
     arbitrary:
       team: Team
       user: User
+      channel: Channel
     error:
       bad_request: "Bad Request"
       unauthorized: "Unauthorized"
@@ -36,5 +37,6 @@ en:
     user_roles:
       invalid: "Invalid User Role"
       exists: "User Role already exists"
+      public_channel_member_only: "You can only join to public channel as member"
       not_exists: "User Role not exists"
       cannot_delete_only_owner: "Cannot remove only owner"

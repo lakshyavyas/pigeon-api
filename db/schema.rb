@@ -13,6 +13,8 @@
 ActiveRecord::Schema.define(version: 2021_12_16_194661) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gist"
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   connection.execute "CREATE SCHEMA IF NOT EXISTS public"
@@ -63,15 +65,17 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
   create_table "core.groups", force: :cascade do |t|
     t.string "name", limit: 255
     t.string "type", limit: 255, default: "Core::Team"
-    t.jsonb "meta_data"
+    t.jsonb "meta_data", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["meta_data"], name: "index_core.groups_on_meta_data", using: :gin
+    t.index ["name"], name: "index_core.groups_on_name", opclass: :gist_trgm_ops, using: :gist
     t.index ["type"], name: "index_core.groups_on_type"
   end
 
   create_table "core.guests", force: :cascade do |t|
-    t.jsonb "meta_data"
-    t.jsonb "identity"
+    t.jsonb "meta_data", default: {}, null: false
+    t.jsonb "identity", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -81,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
     t.bigint "recipient_id", null: false
     t.string "sender_type", null: false
     t.bigint "sender_id", null: false
-    t.jsonb "data"
+    t.jsonb "meta_data", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_type", "recipient_id"], name: "index_core.messages_on_recipient"

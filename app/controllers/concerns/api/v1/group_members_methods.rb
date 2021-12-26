@@ -7,6 +7,7 @@ module Api
       include RoleFactory
       include ApiCommons::CommonMethods
       include TeamsMethods
+      include ChannelsMethods
 
       private
 

@@ -9,7 +9,7 @@
 #  recipient_id   :integer          not null
 #  sender_type    :string           not null
 #  sender_id      :integer          not null
-#  data           :jsonb
+#  meta_data      :jsonb            default("{}"), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -22,7 +22,7 @@
 require 'rails_helper'
 
 RSpec.describe Core::Message, type: :model do
-  it { is_expected.to validate_presence_of(:data) }
+  it { is_expected.to validate_presence_of(:meta_data) }
   it { is_expected.to belong_to(:recipient) }
   it { is_expected.to belong_to(:sender) }
 end
