@@ -34,7 +34,7 @@ en:
       access_token_expired: "Access Token Expired"
       access_token_inactive: "Invalid Access Token"
       not_implemented: "Not implemented"
-    user_roles:
+    roles:
       invalid: "Invalid User Role"
       exists: "User Role already exists"
       public_channel_member_only: "You can only join to public channel as member"

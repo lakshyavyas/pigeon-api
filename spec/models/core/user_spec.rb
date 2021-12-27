@@ -23,7 +23,7 @@ RSpec.describe Core::User, type: :model do
   it { is_expected.to validate_length_of(:first_name).is_at_least(2).is_at_most(255) }
   it { is_expected.to validate_length_of(:last_name).is_at_least(2).is_at_most(255) }
   it { is_expected.to validate_length_of(:email).is_at_least(2).is_at_most(255) }
-  it { is_expected.to have_many(:user_roles) }
+  it { is_expected.to have_many(:roles) }
   it { is_expected.to have_one(:simple_auth) }
   it { is_expected.to have_many(:inbound_messages) }
   it { is_expected.to have_many(:outbound_messages) }

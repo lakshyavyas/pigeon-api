@@ -23,7 +23,7 @@ module Core
               format: { with: URI::MailTo::EMAIL_REGEXP }
 
     has_one :simple_auth, dependent: :destroy
-    has_many :user_roles, dependent: :destroy
+    has_many :roles, as: :roleable, class_name: 'Core::Role'
     has_many :accesses
     has_many :inbound_messages, as: :recipient, class_name: 'Core::Message'
     has_many :outbound_messages, as: :sender, class_name: 'Core::Message'

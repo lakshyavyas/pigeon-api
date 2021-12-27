@@ -20,7 +20,7 @@ module Api
           channel = Core::Channel.new(create_channel_params)
           channel.meta_data = { owner: user.id, public: is_public }
           if channel.save
-            user.user_roles.owner.create(roleable: channel, logical_name: 'channel')
+            user.roles.owner.create(resource: channel, logical_name: 'channel')
             self.output = channel
           else
             self.error = channel

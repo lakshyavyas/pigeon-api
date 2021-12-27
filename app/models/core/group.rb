@@ -25,26 +25,14 @@ module Core
     validates :name, presence: true, length: { minimum: 2, maximum: 255 }
     validates :type, presence: true
 
-    has_many :roles, as: :roleable, class_name: 'Core::UserRole'
+    has_many :roles, as: :resource, class_name: 'Core::Role'
     has_many :inbound_messages, as: :recipient, class_name: 'Core::Message'
     has_many :outbound_messages, as: :sender, class_name: 'Core::Message'
 
     serialize :meta_data, HashSerializer
 
-    def users
-      roles.map(&:user)
-    end
-
-    def admins
-      roles.admin.map(&:user)
-    end
-
     def owners
-      roles.owner.map(&:user)
-    end
-
-    def members
-      roles.member.map(&:user)
+      roles.owner.map(&:roleable)
     end
   end
 end

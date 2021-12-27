@@ -332,26 +332,26 @@ RSpec.describe 'Core - Channel', type: :request, feature: true do
     @channel = FactoryBot.create(:channel)
     channel.meta_data = { owner: user.id, is_public: is_public }
     channel.save
-    user.user_roles.owner.create(roleable: channel, logical_name: 'channel')
+    user.roles.owner.create(resource: channel, logical_name: 'channel')
   end
 
   def given_public_channels_created_by_other_user
     @channel = Core::Channel.create(name: 'fun_things', meta_data: { owner: other_user.id, is_public: true })
-    other_user.user_roles.owner.create(roleable: channel, logical_name: 'channel')
+    other_user.roles.owner.create(resource: channel, logical_name: 'channel')
     @channel = Core::Channel.create(name: 'sun_things', meta_data: { owner: other_user.id, is_public: true })
-    other_user.user_roles.owner.create(roleable: channel, logical_name: 'channel')
+    other_user.roles.owner.create(resource: channel, logical_name: 'channel')
     @channel = Core::Channel.create(name: 'fun_stuffs', meta_data: { owner: other_user.id, is_public: true })
-    other_user.user_roles.owner.create(roleable: channel, logical_name: 'channel')
+    other_user.roles.owner.create(resource: channel, logical_name: 'channel')
   end
 
   def given_a_channel_created_by_other_user(user_role = 'member', is_public: false)
     @channel = FactoryBot.create(:channel)
     channel.meta_data = { owner: other_user.id, is_public: is_public }
     channel.save
-    other_user.user_roles.owner.create(roleable: channel, logical_name: 'channel')
+    other_user.roles.owner.create(resource: channel, logical_name: 'channel')
     return unless %w[member admin owner].include?(user_role)
 
-    user.user_roles.send(user_role).create(roleable: channel, logical_name: 'channel')
+    user.roles.send(user_role).create(resource: channel, logical_name: 'channel')
   end
 
   def user_able_to_update_the_channel(name_len, expected_result = 200)
@@ -374,6 +374,6 @@ RSpec.describe 'Core - Channel', type: :request, feature: true do
   def given_other_user_added_to_channel(user_role = 'member')
     return unless %w[member admin owner].include?(user_role)
 
-    other_user.user_roles.send(user_role).create(roleable: channel, logical_name: 'channel')
+    other_user.roles.send(user_role).create(resource: channel, logical_name: 'channel')
   end
 end

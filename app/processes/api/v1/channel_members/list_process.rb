@@ -15,7 +15,7 @@ module Api
         end
 
         def work
-          self.output = group.users
+          self.output = group.roles.map(&:roleable)
         end
       end
     end

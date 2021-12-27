@@ -20,7 +20,7 @@ module Api
 
         def work
           self.output = fetch_user(target_userid)
-          res = output.user_roles.send(target_role).create(roleable: group, logical_name: 'team')
+          res = output.roles.send(target_role).create(resource: group, logical_name: 'team')
           self.error = res unless res.persisted?
         end
 
@@ -39,7 +39,7 @@ module Api
 
         def check_target_role_in_db
           if get_role(target_user, 'team', group)
-            validation_error(I18n.t('app.user_roles.exists'))
+            validation_error(I18n.t('app.roles.exists'))
             return false
           end
 
@@ -48,7 +48,7 @@ module Api
 
         def check_role_exits
           unless role_name_exists?(target_role)
-            validation_error(I18n.t('app.user_roles.invalid'))
+            validation_error(I18n.t('app.roles.invalid'))
             return false
           end
 

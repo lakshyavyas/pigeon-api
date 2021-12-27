@@ -19,7 +19,7 @@ module Api
           team = Core::Team.new(create_team_params)
           team.meta_data = { owner: user.id }
           if team.save
-            user.user_roles.owner.create(roleable: team, logical_name: 'team')
+            user.roles.owner.create(resource: team, logical_name: 'team')
             self.output = team
           else
             self.error = team

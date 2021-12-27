@@ -295,17 +295,17 @@ RSpec.describe 'Core - Team', type: :request, feature: true do
     @team = FactoryBot.create(:team)
     team.meta_data = { owner: user.id }
     team.save
-    user.user_roles.owner.create(roleable: team, logical_name: 'team')
+    user.roles.owner.create(resource: team, logical_name: 'team')
   end
 
   def given_a_team_created_by_other_user(user_role = 'member')
     @team = FactoryBot.create(:team)
     team.meta_data = { owner: other_user.id }
     team.save
-    other_user.user_roles.owner.create(roleable: team, logical_name: 'team')
+    other_user.roles.owner.create(resource: team, logical_name: 'team')
     return unless %w[member admin owner].include?(user_role)
 
-    user.user_roles.send(user_role).create(roleable: team, logical_name: 'team')
+    user.roles.send(user_role).create(resource: team, logical_name: 'team')
   end
 
   def user_able_to_update_the_team(name_len, expected_result = 200)
@@ -326,6 +326,6 @@ RSpec.describe 'Core - Team', type: :request, feature: true do
   def given_other_user_added_to_team(user_role = 'member')
     return unless %w[member admin owner].include?(user_role)
 
-    other_user.user_roles.send(user_role).create(roleable: team, logical_name: 'team')
+    other_user.roles.send(user_role).create(resource: team, logical_name: 'team')
   end
 end

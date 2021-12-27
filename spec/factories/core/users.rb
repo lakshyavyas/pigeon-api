@@ -18,13 +18,13 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     simple_auth { Core::SimpleAuth.create(password: '123123') }
-    user_roles do
-      [Core::UserRole.create(roleable: Core::Organization.first,
-                             logical_name: 'organization',
-                             role_level: Core::UserRole.role_levels[:admin]),
-       Core::UserRole.create(roleable: Core::Organization.first,
-                             logical_name: 'organization',
-                             role_level: Core::UserRole.role_levels[:member])]
+    roles do
+      [Core::Role.create(resource: Core::Organization.first,
+                         logical_name: 'organization',
+                         role_level: Core::Role.role_levels[:admin]),
+       Core::Role.create(resource: Core::Organization.first,
+                         logical_name: 'organization',
+                         role_level: Core::Role.role_levels[:member])]
     end
   end
 
@@ -33,10 +33,10 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     simple_auth { Core::SimpleAuth.create(password: '123123') }
-    user_roles do
-      [Core::UserRole.create(roleable: Core::Organization.first,
-                             logical_name: 'organization',
-                             role_level: Core::UserRole.role_levels[:member])]
+    roles do
+      [Core::Role.create(resource: Core::Organization.first,
+                         logical_name: 'organization',
+                         role_level: Core::Role.role_levels[:member])]
     end
   end
 end

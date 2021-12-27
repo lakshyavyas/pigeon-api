@@ -98,24 +98,26 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "core.roles", force: :cascade do |t|
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.string "roleable_type", null: false
+    t.bigint "roleable_id", null: false
+    t.string "logical_name", limit: 255
+    t.string "role_arn", limit: 255
+    t.integer "role_level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type", "resource_id"], name: "index_core.roles_on_resource"
+    t.index ["roleable_type", "roleable_id"], name: "index_core.roles_on_roleable"
+  end
+
   create_table "core.simple_auths", force: :cascade do |t|
     t.string "password_digest"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_core.simple_auths_on_user_id"
-  end
-
-  create_table "core.user_roles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "roleable_type", null: false
-    t.bigint "roleable_id", null: false
-    t.string "logical_name", limit: 255
-    t.integer "role_level"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["roleable_type", "roleable_id"], name: "index_core.user_roles_on_roleable"
-    t.index ["user_id"], name: "index_core.user_roles_on_user_id"
   end
 
   create_table "core.users", force: :cascade do |t|
@@ -130,5 +132,4 @@ ActiveRecord::Schema.define(version: 2021_12_16_194661) do
   add_foreign_key "core.active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "core.active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "core.simple_auths", "users"
-  add_foreign_key "core.user_roles", "users"
 end

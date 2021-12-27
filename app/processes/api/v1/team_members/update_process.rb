@@ -18,7 +18,7 @@ module Api
         end
 
         def work
-          self.output = target_role_in_db.user
+          self.output = target_role_in_db.roleable
           self.error = target_role_in_db unless target_role_in_db.update(role_level: target_role)
         end
 
@@ -52,7 +52,7 @@ module Api
 
         def check_role_exits
           unless role_name_exists?(target_role)
-            validation_error(I18n.t('app.user_roles.invalid'))
+            validation_error(I18n.t('app.roles.invalid'))
             return false
           end
 
@@ -61,7 +61,7 @@ module Api
 
         def check_target_role_in_db
           unless target_role_in_db
-            validation_error(I18n.t('app.user_roles.not_exists'))
+            validation_error(I18n.t('app.roles.not_exists'))
             return false
           end
 
@@ -70,7 +70,7 @@ module Api
 
         def check_target_role
           if target_role_in_db.role_arn.start_with? target_role
-            validation_error(I18n.t('app.user_roles.exists'))
+            validation_error(I18n.t('app.roles.exists'))
             return false
           end
 
@@ -79,7 +79,7 @@ module Api
 
         def check_removing_only_owner
           if target_role_in_db.owner? && group.owners.count <= 1
-            validation_error(I18n.t('app.user_roles.cannot_delete_only_owner'))
+            validation_error(I18n.t('app.roles.cannot_delete_only_owner'))
             return false
           end
 

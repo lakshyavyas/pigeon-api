@@ -13,7 +13,7 @@
 module Core
   class Organization < ApplicationRecord
     has_one_attached :logo
-    has_many :roles, as: :roleable, class_name: 'Core::UserRole'
+    has_many :roles, as: :roleable, class_name: 'Core::Role'
     validates :name, presence: true, length: { minimum: 3, maximum: 255 }
     validates :logo, presence: false, size: { less_than: 512.kilobytes }, content_type: app_config.allowed_images
 

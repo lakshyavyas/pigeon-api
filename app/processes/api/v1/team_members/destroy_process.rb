@@ -28,7 +28,7 @@ module Api
 
         def check_removing_only_owner
           if target_role_in_db.owner? && group.owners.count <= 1
-            validation_error(I18n.t('app.user_roles.cannot_delete_only_owner'))
+            validation_error(I18n.t('app.roles.cannot_delete_only_owner'))
             return false
           end
 
@@ -37,7 +37,7 @@ module Api
 
         def check_target_role_in_db
           unless target_role_in_db
-            validation_error(I18n.t('app.user_roles.not_exists'))
+            validation_error(I18n.t('app.roles.not_exists'))
             return false
           end
 
